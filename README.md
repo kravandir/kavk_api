@@ -15,4 +15,6 @@ async def main():
   async for event in longpoll.listen():
       print(event)
       
+  
+asyncio.run(main())
 ```
