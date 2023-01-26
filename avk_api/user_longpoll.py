@@ -1,7 +1,7 @@
 from enums import *
 from avk_api import Vk
 from exceptions import LPError
-
+from datetime import datetime
 
 class Event(object):
     """ Событие, полученное от longpoll-сервера.
@@ -13,26 +13,27 @@ class Event(object):
     События с полем `timestamp` также дополнительно имеют поле `datetime`.
     """
 
-    def __init__(self, raw):
-        self.raw = raw
+    def __init__(self, raw:dict):
+        self.raw:dict = raw
 
-        self.from_user = False
-        self.from_chat = False
-        self.from_group = False
-        self.from_me = False
-        self.to_me = False
+        self.from_user:bool = False
+        self.from_chat:bool = False
+        self.from_group:bool = False
+        self.from_me:bool = False
+        self.to_me:bool = False
 
-        self.attachments = {}
+        self.attachments:dict | None = {}
         self.message_data = None
 
-        self.message_id = 0
-        self.timestamp = 0
-        self.peer_id = 0
-        self.flags = 0
-        self.extra = 0
-        self.extra_values = dict()
-        self.type_id = 0
-        self.values = dict()
+        self.message_id:int | None = None
+        self.timestamp:int | None = None
+        self.datetime:datetime | None = None
+        self.peer_id:int | None = None
+        self.flags:int | None = None
+        self.extra:int | None = None
+        self.extra_values:dict | None = None
+        self.type_id:int | None = None
+        self.values:dict | None = None
 
         try:
             self.type = VkEventType(self.raw[0])
@@ -66,7 +67,7 @@ class Event(object):
         elif self.type in [VkEventType.MESSAGE_NEW, VkEventType.MESSAGE_EDIT]:
             self._parse_message()
 
-        elif self.type in [VkEventType.USER_ONLINE, VkEventType.USER_OFFLINE]:
+        elif self.type in [VkEventType.USER_ONLINE, VkEventType.USER_OFFLINE] and self.user_id != None:
             self.user_id = abs(self.user_id)
             self._parse_online_status()
 
@@ -86,11 +87,11 @@ class Event(object):
             self.__setattr__(k, v)
 
     def _parse_peer_id(self):
-        if self.peer_id < 0:  # Сообщение от/для группы
+        if isinstance(self.peer_id, int) and self.peer_id < 0:  # Сообщение от/для группы
             self.from_group = True
             self.group_id = abs(self.peer_id)
 
-        elif self.peer_id > CHAT_START_ID:  # Сообщение из беседы
+        elif isinstance(self.peer_id, int) and self.peer_id > CHAT_START_ID:  # Сообщение из беседы
             self.from_chat = True
             self.chat_id = self.peer_id - CHAT_START_ID
 
@@ -102,21 +103,24 @@ class Event(object):
             self.user_id = self.peer_id
 
     def _parse_message_flags(self):
-        self.message_flags = set(
-            x for x in VkMessageFlag if self.flags & x
-        )
+        if isinstance(self.flags, int):
+            self.message_flags = set(
+                x for x in VkMessageFlag if self.flags & x
+            )
 
     def _parse_peer_flags(self):
-        self.peer_flags = set(
-            x for x in VkPeerFlag if self.flags & x
-        )
+        if isinstance(self.flags, int):
+            self.peer_flags = set(
+                x for x in VkPeerFlag if self.flags & x
+            )
 
     def _parse_message(self):
-        if self.type is VkEventType.MESSAGE_NEW:
-            if self.flags & VkMessageFlag.OUTBOX:
-                self.from_me = True
-            else:
-                self.to_me = True
+        if isinstance(self.flags, int):
+            if self.type is VkEventType.MESSAGE_NEW:
+                if self.flags & VkMessageFlag.OUTBOX:
+                    self.from_me = True
+                else:
+                    self.to_me = True
 
         # ВК возвращает сообщения в html-escaped виде,
         # при этом переводы строк закодированы как <br> и не экранированы
@@ -130,7 +134,7 @@ class Event(object):
 
     def _parse_online_status(self):
         try:
-            if self.type is VkEventType.USER_ONLINE:
+            if self.type is VkEventType.USER_ONLINE and self.extra != None:
                 self.platform = VkPlatform(self.extra & 0xFF)
 
             elif self.type is VkEventType.USER_OFFLINE:
