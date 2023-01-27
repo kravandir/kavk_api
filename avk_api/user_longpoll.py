@@ -1,7 +1,7 @@
-from enums import *
-from avk_api import Vk
-from exceptions import LPError
 from datetime import datetime
+from .enums import *
+from .avk_api import Vk
+from .exceptions import LPError
 
 class Event(object):
     """ Событие, полученное от longpoll-сервера.
@@ -22,18 +22,17 @@ class Event(object):
         self.from_me:bool = False
         self.to_me:bool = False
 
-        self.attachments:dict | None = {}
-        self.message_data = None
+        self.attachments:dict = {}
 
-        self.message_id:int | None = None
-        self.timestamp:int | None = None
-        self.datetime:datetime | None = None
-        self.peer_id:int | None = None
-        self.flags:int | None = None
-        self.extra:int | None = None
-        self.extra_values:dict | None = None
-        self.type_id:int | None = None
-        self.values:dict | None = None
+        self.message_id:int = 0
+        self.timestamp:int = 0
+        self.datetime:datetime = datetime(1,1,1)
+        self.peer_id:int = 0
+        self.flags:int= 0
+        self.extra:int = 0
+        self.extra_values:dict = {}
+        self.type_id:int = 0
+        self.values:dict = {}
 
         try:
             self.type = VkEventType(self.raw[0])
@@ -166,6 +165,8 @@ class LongPoll:
         self._v = v
         self.params = None
 
+        self.updates = []
+
     async def listen(self):
         while 1:
             async for event in LongPoll(self._vk, self._wait, self._mode, self._v):
@@ -178,24 +179,28 @@ class LongPoll:
 
     def __aiter__(self): return self
 
-    async def __anext__(self) -> Event | None:
+    async def __anext__(self) -> Event:
         if not self.params: 
             r = await self._api.messages.getLongPollServer(lp_version=self._v)
-            print(r)
             self.params = {'key': r['key'], 'ts': r['ts'],
                            'wait': self._wait, 'mode': self._mode,
                            'version': self._v, 'act': 'a_check'}
             self.server = 'https://'+r['server']
 
+        if self.updates != []:
+            u = self.updates.pop(0)
+            return Event(u)
+            
         async with self._vk.client.get(url=self.server, params=self.params) as r:
             # r = await self._vk.client.get(url=self.server, params=self.params)
             r = await r.json()
+            updates = r['updates']
+            if len(updates) > 0:
+                self.updates = updates[1:]
+                updates = updates[0]
             self.params.update({'ts': r['ts']})
-            try:
-                e = r['failed']
-                if e != 1: raise LPError(e)
-                else: return
-            except:
-                pass
-            return Event(r['updates'])
+            return Event(updates)
+
+
+
 

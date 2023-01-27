@@ -1,5 +1,5 @@
 import aiohttp, asyncio_atexit
-from exceptions import VkError
+from .exceptions import VkError
 
 class Vk:
     def __init__(self, token:str, url:str="https://api.vk.com/method/",
