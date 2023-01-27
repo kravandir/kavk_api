@@ -13,8 +13,8 @@ class Event(object):
     События с полем `timestamp` также дополнительно имеют поле `datetime`.
     """
 
-    def __init__(self, raw:dict):
-        self.raw:dict = raw
+    def __init__(self, raw:list):
+        self.raw:list = raw
 
         self.from_user:bool = False
         self.from_chat:bool = False
@@ -39,6 +39,8 @@ class Event(object):
             self._list_to_attr(self.raw[1:], EVENT_ATTRS_MAPPING[self.type])
         except ValueError:
             self.type = self.raw[0]
+        except IndexError:
+            self.type = 0
 
         if self.extra_values:
             self._dict_to_attr(self.extra_values)
