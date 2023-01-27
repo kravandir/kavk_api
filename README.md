@@ -1,7 +1,7 @@
 # avk_api
-Asynchronus VK API
+Асинхронный модуль Python для скриптов c использованием API vk.com
 
-## Example
+## Пример
 ```python
 import asyncio
 from avk_api import Vk
@@ -18,3 +18,11 @@ async def main():
   
 asyncio.run(main())
 ```
+
+# TODO:
+ - ❌ обработка капчи
+ - ❌ лонгполл для сообществ
+
+
+# Огромное спасибо:
+### [python273](https://github.com/python273) за вдохновение и за то что я спиздил у вас код
