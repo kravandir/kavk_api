@@ -1,11 +1,25 @@
+from typing import Callable
 import aiohttp, asyncio_atexit
 from .exceptions import VkError
 
+class Captcha:
+    def __init__(self, captcha:dict) -> None:
+        self.raw = captcha
+        self.img = captcha['captcha_img']
+        self.sid = captcha['captcha_sid']
+
+
+def captcha_handler(captcha:Captcha) -> str:
+    print(captcha)
+    return ''
+
+
 class Vk:
-    def __init__(self, token:str, url:str="https://api.vk.com/method/",
-                version="5.131") -> None:
+    def __init__(self, token:str, captcha_handler:Callable[[Captcha], str]=captcha_handler,
+                url:str="https://api.vk.com/method/", version="5.131") -> None:
         self.token = token
         self.client = aiohttp.ClientSession(conn_timeout=60)
+        self.captcha_handler = captcha_handler
         self.URL = url
         self.version = version
         self._params = {'access_token': self.token,
@@ -16,8 +30,18 @@ class Vk:
         params.update(self._params)
         async with self.client.get(self.URL+method, params=params) as r:
             r = await r.json()
-            code = self._check_for_error(r)
-            if code > 0:
+            if self._check_for_error(r) > 0:
+                code = self._check_for_error(r)
+                if code == 14:
+                    captcha = r['error']
+                    captcha_key = self.captcha_handler(captcha)
+                    try:
+                        params.update({'captcha_sid': captcha.sid,
+                                       'captcha_key': captcha_key})
+                        r = await self.call_method(method, **params)
+                        if self._check_for_error(r) > 0:
+                            raise VkError(r['error'])
+                    except: pass
                 error = r['error']
                 raise VkError(error)
             return r['response']
