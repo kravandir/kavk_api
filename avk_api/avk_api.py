@@ -26,7 +26,7 @@ class Vk:
                         'v' : self.version}
         asyncio_atexit.register(self._on_exit)
 
-    async def call_method(self, method:str, **params):
+    async def call_method(self, method:str, **params) -> dict:
         params.update(self._params)
         async with self.client.get(self.URL+method, params=params) as r:
             r = await r.json()
@@ -49,13 +49,13 @@ class Vk:
     def get_api(self):
         return Api(self)
 
-    def _check_for_error(self, r:dict):
+    def _check_for_error(self, r:dict) -> int:
         try: 
             code = r['error']['error_code']
         except: code = 0
         finally: return code
 
-    async def _on_exit(self):
+    async def _on_exit(self) -> None:
         await self.client.close()
 
 
