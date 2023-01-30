@@ -2,11 +2,8 @@
 Большинство enum взято из https://github.com/python273/vk_api/
 Автор: python273
 '''
-from collections import defaultdict
-from datetime import datetime
 from enum import IntEnum
 
-import requests
 
 CHAT_START_ID = int(2E9)  # id с которого начинаются беседы
 

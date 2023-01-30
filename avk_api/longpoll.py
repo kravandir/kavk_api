@@ -172,8 +172,13 @@ class LongPoll:
     async def listen(self):
         while 1:
             async for event in LongPoll(self._vk, self._wait, self._mode, self._v):
-                yield event
-    
+                yield event 
+
+    async def get_event(self, url:str, params:dict) -> dict:
+        r = await self._vk.client.get(url=url, params=params)
+        r = await r.json()
+        return r
+
     # Что происходит дальше?
     # __aiter__ возвращает коду `async for e in LongPoll.listem()`
     # функцию __anext__.
@@ -193,16 +198,26 @@ class LongPoll:
             u = self.updates.pop(0)
             return Event(u)
             
-        async with self._vk.client.get(url=self.server, params=self.params) as r:
-            # r = await self._vk.client.get(url=self.server, params=self.params)
-            r = await r.json()
+        r = await self.get_event(url=self.server, params=self.params)
+        try:
             updates = r['updates']
-            if len(updates) > 0:
-                self.updates = updates[1:]
-                updates = updates[0]
-            self.params.update({'ts': r['ts']})
-            return Event(updates)
+        except IndexError:
+            error = r['failed']
+            if error == 1:
+                self.params.update({'ts': r['ts']})
+            elif error in (2,3):
+                self.params = {}
+            updates = [[0]]
+        except Exception as e:
+            raise e
 
+        if len(updates) > 0:
+            self.updates = updates[1:]
+            update = updates[0]
+        else:
+            update = updates
+        self.params.update({'ts': r['ts']})
+        return Event(update)
 
 
 
