@@ -1,14 +1,20 @@
 from avk_api.avk_api import Vk
 from avk_api.bot_enums import BotEventType
 
+
 class BotEvent:
     def __init__(self, raw:dict) -> None:
-        self.raw = raw        
+        self.raw = raw
+        print(raw)
         try:
             self.type = BotEventType(raw['type'])
-        except:
+        except ValueError:
             self.type = raw['type']
-        self.obj = self.object = raw['object']
+        except KeyError:
+            self.type = ''
+            return
+
+
 
 
 class BotLongPoll:
@@ -40,13 +46,13 @@ class BotLongPoll:
 
     async def __anext__(self) -> BotEvent:
         if self.params == {}: 
-            group_id = await self._api.groups.GetById()
+            group_id = await self._api.groups.getById()
             group_id = group_id[0]['id']
-            r = await self._api.messages.getLongPollServer(lp_version=self._v, group_id=group_id)
+            r = await self._api.groups.getLongPollServer(lp_version=self._v, group_id=group_id)
             self.params:dict = {'key': r['key'], 'ts': r['ts'],
                            'wait': self._wait, 'mode': self._mode,
                            'version': self._v, 'act': 'a_check'}
-            self.server:str = 'https://'+r['server']
+            self.server:str = r['server']
 
         if self.updates != []:
             u = self.updates.pop(0)
@@ -67,8 +73,10 @@ class BotLongPoll:
 
         if len(updates) > 0:
             self.updates = updates[1:]
-
-        update = updates[0]
+            update = updates[0]
+        elif updates == []:
+            update = {'type': ''}
+        else: update:dict = updates[0]
         self.params.update({'ts': r['ts']})
         return BotEvent(update)
 

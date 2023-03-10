@@ -1,6 +1,7 @@
 from typing import Callable
 import aiohttp, asyncio_atexit
 from .exceptions import VkError
+from .types.methods import *
 
 class Captcha:
     def __init__(self, captcha:dict) -> None:
@@ -24,10 +25,12 @@ class Vk:
         self.version = version
         self._params = {'access_token': self.token,
                         'v' : self.version}
+
         asyncio_atexit.register(self._on_exit)
 
     async def call_method(self, method:str, **params) -> dict:
         params.update(self._params)
+        params = {k:v for k, v in params.items() if v is not None}
         async with self.client.get(self.URL+method, params=params) as r:
             r = await r.json()
             if self._check_for_error(r) > 0:
@@ -64,6 +67,46 @@ class Api:
     def __init__(self, vk:Vk, method:str="") -> None:
         self._vk = vk
         self._method = method
+        # Дальше скучно
+        self.account = Account(vk)
+        self.ads = Ads(vk)
+        self.adsweb = Adsweb(vk)
+        self.apps = Apps(vk)
+        self.auth = Auth(vk)
+        self.board = Board(vk)
+        self.database = Database(vk)
+        self.docs = Docs(vk)
+        self.donut = Donut(vk)
+        self.fave = Fave(vk)
+        self.friends = Friends(vk)
+        self.gifts = Gifts(vk)
+        self.groups = Groups(vk)
+        self.likes = Likes(vk)
+        self.market = Market(vk)
+        self.messages = Messages(vk)
+        self.newsfeed = Newsfeed(vk)
+        self.notes = Notes(vk)
+        self.notifications = Notifications(vk)
+        self.orders = Orders(vk)
+        self.pages = Pages(vk)
+        self.photos = Photos(vk)
+        self.podcasts = Podcasts(vk)
+        self.polls = Polls(vk)
+        self.search = Search(vk)
+        self.secure = Secure(vk)
+        self.stats = Stats(vk)
+        self.status = Status(vk)
+        self.storage = Storage(vk)
+        self.store = Store(vk)
+        self.stories = Stories(vk)
+        self.streaming = Streaming(vk)
+        self.users = Users(vk)
+        self.utils = Utils(vk)
+        self.video = Video(vk)
+        self.wall = Wall(vk)
+        self.widgets = Widgets(vk)
+        # Скука закончилась!
+
 
     def __getattr__(self, method:str):
         if '_' in method:
@@ -75,12 +118,12 @@ class Api:
             (self._method + '.' if self._method else '') + method
         )
 
-    def __call__(self, **kwargs):
+    async def __call__(self, **kwargs):
         for k, v in kwargs.items():
             if isinstance(v, (list, tuple)):
                 kwargs[k] = ','.join(str(x) for x in v)
 
-        return self._vk.call_method(self._method, **kwargs)
+        return await self._vk.call_method(self._method, **kwargs)
 
 
 
