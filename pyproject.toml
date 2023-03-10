@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "avk-api"
+name = "kavk-api"
 version = "0.9.0"
 description = ""
 authors = ["Kravandir <kravandir@gmail.com>"]
