@@ -5,7 +5,7 @@ description = ""
 authors = ["Kravandir <kravandir@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "avk_api"}]
+packages = [{include = "kavk_api"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
