@@ -1,6 +1,6 @@
 from datetime import datetime
 from .enums import *
-from .avk_api import Vk
+from .kavk_api import Vk
 from .exceptions import LPError
 
 class Event(object):
@@ -189,10 +189,10 @@ class LongPoll:
     async def __anext__(self) -> Event:
         if not self.params: 
             r = await self._api.messages.getLongPollServer(lp_version=self._v)
-            self.params = {'key': r['key'], 'ts': r['ts'],
+            self.params = {'key': r.key, 'ts': r.ts,
                            'wait': self._wait, 'mode': self._mode,
                            'version': self._v, 'act': 'a_check'}
-            self.server = 'https://'+r['server']
+            self.server = 'https://'+r.server
 
         if self.updates != []:
             u = self.updates.pop(0)

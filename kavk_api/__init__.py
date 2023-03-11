@@ -1,4 +1,4 @@
-from .avk_api import *
+from .kavk_api import *
 from .enums import *
 from .exceptions import *
 from .longpoll import *

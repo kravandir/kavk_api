@@ -1,6 +1,6 @@
 from enum import Enum
 from typing import Optional
-from .base import BM
+from base import BM
 
 class AccountNameRequestStatus(Enum):
 	SUCCESS = "success"
@@ -93,9 +93,9 @@ class AccountPushConversations(BM):
 
 
 class AccountPushConversationsItem(BM):
-	disabled_until:Optional[int] = None
-	peer_id:Optional[int] = None
-	sound:Optional[bool] = None
+	disabled_until:int
+	peer_id:int
+	sound:bool
 	disabled_mentions:Optional[bool] = None
 	disabled_mass_mentions:Optional[bool] = None
 
@@ -133,8 +133,8 @@ class AccountSubscriptions(BM):
 	pass
 
 class AccountUserSettingsInterest(BM):
-	title:Optional[str] = None
-	value:Optional[str] = None
+	title:str
+	value:str
 
 
 class AccountUserSettingsInterests(BM):
@@ -239,23 +239,23 @@ class AdsAccesses(BM):
 
 
 class AdsAccount(BM):
-	access_role:Optional["AdsAccessRole"] = None
-	account_id:Optional[int] = None
-	account_status:Optional[bool] = None
-	account_type:Optional["AdsAccountType"] = None
-	account_name:Optional[str] = None
-	can_view_budget:Optional[bool] = None
+	access_role:"AdsAccessRole"
+	account_id:int
+	account_status:bool
+	account_type:"AdsAccountType"
+	account_name:str
+	can_view_budget:bool
 
 
 class AdsAd(BM):
-	ad_format:Optional[int] = None
+	ad_format:int
 	ad_platform:Optional[list[int|str]] = None
-	all_limit:Optional[int] = None
-	approved:Optional["AdsAdApproved"] = None
-	campaign_id:Optional[int] = None
+	all_limit:int
+	approved:"AdsAdApproved"
+	campaign_id:int
 	category1_id:Optional[int] = None
 	category2_id:Optional[int] = None
-	cost_type:Optional["AdsAdCostType"] = None
+	cost_type:"AdsAdCostType"
 	cpc:Optional[int] = None
 	cpm:Optional[int] = None
 	cpa:Optional[int] = None
@@ -264,69 +264,69 @@ class AdsAd(BM):
 	disclaimer_medical:Optional[bool] = None
 	disclaimer_specialist:Optional[bool] = None
 	disclaimer_supplements:Optional[bool] = None
-	id:Optional[int] = None
+	id:int
 	impressions_limit:Optional[int] = None
 	impressions_limited:Optional[bool] = None
-	name:Optional[str] = None
-	status:Optional["AdsAdStatus"] = None
+	name:str
+	status:"AdsAdStatus"
 	video:Optional[bool] = None
 
 
 class AdsAdLayout(BM):
-	ad_format:Optional[int] = None
-	campaign_id:Optional[int] = None
-	cost_type:Optional["AdsAdCostType"] = None
-	description:Optional[str] = None
-	id:Optional[str] = None
-	image_src:Optional[str] = None
+	ad_format:int
+	campaign_id:int
+	cost_type:"AdsAdCostType"
+	description:str
+	id:str
+	image_src:str
 	image_src_2x:Optional[str] = None
 	link_domain:Optional[str] = None
-	link_url:Optional[str] = None
+	link_url:str
 	preview_link:Optional[str] = None
-	title:Optional[str] = None
+	title:str
 	video:Optional[bool] = None
 
 
 class AdsCampaign(BM):
 	ads_count:Optional[int] = None
-	all_limit:Optional[str] = None
+	all_limit:str
 	create_time:Optional[int] = None
 	goal_type:Optional[int] = None
 	user_goal_type:Optional[int] = None
 	is_cbo_enabled:Optional[bool] = None
-	day_limit:Optional[str] = None
-	id:Optional[int] = None
-	name:Optional[str] = None
-	start_time:Optional[int] = None
-	status:Optional["AdsCampaignStatus"] = None
-	stop_time:Optional[int] = None
-	type:Optional["AdsCampaignType"] = None
+	day_limit:str
+	id:int
+	name:str
+	start_time:int
+	status:"AdsCampaignStatus"
+	stop_time:int
+	type:"AdsCampaignType"
 	update_time:Optional[int] = None
 	views_limit:Optional[int] = None
 
 
 class AdsCategory(BM):
-	id:Optional[int] = None
-	name:Optional[str] = None
+	id:int
+	name:str
 	subcategories:Optional[list[list]] = None
 
 
 class AdsClient(BM):
-	all_limit:Optional[str] = None
-	day_limit:Optional[str] = None
-	id:Optional[int] = None
-	name:Optional[str] = None
+	all_limit:str
+	day_limit:str
+	id:int
+	name:str
 
 
 class AdsCreateAdStatus(BM):
-	id:Optional[int] = None
+	id:int
 	post_id:Optional[int] = None
 	error_code:Optional[int] = None
 	error_desc:Optional[str] = None
 
 
 class AdsCreateCampaignStatus(BM):
-	id:Optional[int] = None
+	id:int
 	error_code:Optional[int] = None
 	error_desc:Optional[str] = None
 
@@ -381,23 +381,23 @@ class AdsDemostatsFormat(BM):
 
 
 class AdsFloodStats(BM):
-	left:Optional[int] = None
-	refresh:Optional[int] = None
+	left:int
+	refresh:int
 
 
 class AdsLinkStatus(BM):
-	description:Optional[str] = None
-	redirect_url:Optional[str] = None
-	status:Optional[str] = None
+	description:str
+	redirect_url:str
+	status:str
 
 
 class AdsLookalikeRequest(BM):
-	id:Optional[int] = None
-	create_time:Optional[int] = None
-	update_time:Optional[int] = None
+	id:int
+	create_time:int
+	update_time:int
 	scheduled_delete_time:Optional[int] = None
-	status:Optional[str] = None
-	source_type:Optional[str] = None
+	status:str
+	source_type:str
 	source_retargeting_group_id:Optional[int] = None
 	source_name:Optional[str] = None
 	audience_count:Optional[int] = None
@@ -410,8 +410,8 @@ class AdsLookalikeRequestSaveAudienceLevel(BM):
 
 
 class AdsMusician(BM):
-	id:Optional[int] = None
-	name:Optional[str] = None
+	id:int
+	name:str
 	avatar:Optional[str] = None
 
 
@@ -420,15 +420,15 @@ class AdsParagraphs(BM):
 
 
 class AdsPromotedPostReach(BM):
-	hide:Optional[int] = None
-	id:Optional[int] = None
-	join_group:Optional[int] = None
-	links:Optional[int] = None
-	reach_subscribers:Optional[int] = None
-	reach_total:Optional[int] = None
-	report:Optional[int] = None
-	to_group:Optional[int] = None
-	unsubscribe:Optional[int] = None
+	hide:int
+	id:int
+	join_group:int
+	links:int
+	reach_subscribers:int
+	reach_total:int
+	report:int
+	to_group:int
+	unsubscribe:int
 	video_views_100p:Optional[int] = None
 	video_views_25p:Optional[int] = None
 	video_views_3s:Optional[int] = None
@@ -510,7 +510,7 @@ class AdsStatsViewsTimes(BM):
 
 
 class AdsTargStats(BM):
-	audience_count:Optional[int] = None
+	audience_count:int
 	recommended_cpc:Optional[int] = None
 	recommended_cpm:Optional[int] = None
 	recommended_cpc_50:Optional[int] = None
@@ -556,51 +556,51 @@ class AdsTargetGroup(BM):
 
 
 class AdsUpdateOfficeUsersResult(BM):
-	user_id:Optional[int] = None
-	is_success:Optional[bool] = None
+	user_id:int
+	is_success:bool
 	error:Optional["BaseError"] = None
 
 
 class AdsUserSpecification(BM):
-	user_id:Optional[int] = None
-	role:Optional["AdsAccessRolePublic"] = None
+	user_id:int
+	role:"AdsAccessRolePublic"
 	grant_access_to_all_clients:Optional[bool] = None
 	client_ids:Optional[list[list]] = None
 	view_budget:Optional[bool] = None
 
 
 class AdsUserSpecificationCutted(BM):
-	user_id:Optional[int] = None
-	role:Optional["AdsAccessRolePublic"] = None
+	user_id:int
+	role:"AdsAccessRolePublic"
 	client_id:Optional[int] = None
 	view_budget:Optional[bool] = None
 
 
 class AdsUsers(BM):
-	accesses:Optional[list[list]] = None
-	user_id:Optional[int] = None
+	accesses:list[list]
+	user_id:int
 
 
 
 
 class AdswebGetAdCategoriesResponseCategoriesCategory(BM):
-	id:Optional[int] = None
-	name:Optional[str] = None
+	id:int
+	name:str
 
 
 class AdswebGetAdUnitsResponseAdUnitsAdUnit(BM):
-	id:Optional[int] = None
-	site_id:Optional[int] = None
+	id:int
+	site_id:int
 	name:Optional[str] = None
 
 
 class AdswebGetFraudHistoryResponseEntriesEntry(BM):
-	site_id:Optional[int] = None
-	day:Optional[str] = None
+	site_id:int
+	day:str
 
 
 class AdswebGetSitesResponseSitesSite(BM):
-	id:Optional[int] = None
+	id:int
 	status_user:Optional[str] = None
 	status_moder:Optional[str] = None
 	domains:Optional[str] = None
@@ -624,8 +624,8 @@ class AdswebGetStatisticsResponseItemsItem(BM):
 
 
 class AppWidgetsPhoto(BM):
-	id:Optional[str] = None
-	images:Optional[list[list]] = None
+	id:str
+	images:list[list]
 
 
 class AppWidgetsPhotos(BM):
@@ -651,9 +651,9 @@ class AppsAppType(Enum):
 	MINI_APP = "mini_app"
 
 class AppsAppMin(BM):
-	type:Optional["AppsAppType"] = None
-	id:Optional[int] = None
-	title:Optional[str] = None
+	type:"AppsAppType"
+	id:int
+	title:str
 	author_owner_id:Optional[int] = None
 	is_installed:Optional[bool] = None
 	icon_139:Optional[str] = None
@@ -666,8 +666,8 @@ class AppsAppMin(BM):
 
 
 class AppsCatalogList(BM):
-	count:Optional[int] = None
-	items:Optional[list[list]] = None
+	count:int
+	items:list[list]
 	profiles:Optional[list[list]] = None
 
 
@@ -675,11 +675,11 @@ class AppsLeaderboard(BM):
 	level:Optional[int] = None
 	points:Optional[int] = None
 	score:Optional[int] = None
-	user_id:Optional[int] = None
+	user_id:int
 
 
 class AppsScope(BM):
-	name:Optional[str] = None
+	name:str
 	title:Optional[str] = None
 
 
@@ -687,12 +687,12 @@ class AppsScope(BM):
 
 class AudioAudio(BM):
 	access_key:Optional[str] = None
-	artist:Optional[str] = None
-	id:Optional[int] = None
-	owner_id:Optional[int] = None
-	title:Optional[str] = None
+	artist:str
+	id:int
+	owner_id:int
+	title:str
 	url:Optional[str] = None
-	duration:Optional[int] = None
+	duration:int
 	date:Optional[int] = None
 	album_id:Optional[int] = None
 	genre_id:Optional[int] = None
@@ -841,8 +841,8 @@ class BaseUserGroupFields(Enum):
 	CAN_UPLOAD_STORY = "can_upload_story"
 
 class BaseCity(BM):
-	id:Optional[int] = None
-	title:Optional[str] = None
+	id:int
+	title:str
 
 
 class BaseCommentsInfo(BM):
@@ -855,32 +855,32 @@ class BaseCommentsInfo(BM):
 
 
 class BaseCountry(BM):
-	id:Optional[int] = None
-	title:Optional[str] = None
+	id:int
+	title:str
 
 
 class BaseCropPhoto(BM):
-	photo:Optional["PhotosPhoto"] = None
-	crop:Optional["BaseCropPhotoCrop"] = None
-	rect:Optional["BaseCropPhotoRect"] = None
+	photo:"PhotosPhoto"
+	crop:"BaseCropPhotoCrop"
+	rect:"BaseCropPhotoRect"
 
 
 class BaseCropPhotoCrop(BM):
-	x:Optional[int] = None
-	y:Optional[int] = None
-	x2:Optional[int] = None
-	y2:Optional[int] = None
+	x:int
+	y:int
+	x2:int
+	y2:int
 
 
 class BaseCropPhotoRect(BM):
-	x:Optional[int] = None
-	y:Optional[int] = None
-	x2:Optional[int] = None
-	y2:Optional[int] = None
+	x:int
+	y:int
+	x2:int
+	y2:int
 
 
 class BaseError(BM):
-	error_code:Optional[int] = None
+	error_code:int
 	error_subcode:Optional[int] = None
 	error_msg:Optional[str] = None
 	error_text:Optional[str] = None
@@ -895,20 +895,20 @@ class BaseGeo(BM):
 
 
 class BaseGeoCoordinates(BM):
-	latitude:Optional[int] = None
-	longitude:Optional[int] = None
+	latitude:int
+	longitude:int
 
 
 class BaseGradientPoint(BM):
-	color:Optional[str] = None
-	position:Optional[int] = None
+	color:str
+	position:int
 
 
 class BaseImage(BM):
 	id:Optional[str] = None
-	url:Optional[str] = None
-	width:Optional[int] = None
-	height:Optional[int] = None
+	url:str
+	width:int
+	height:int
 
 
 class BaseLikes(BM):
@@ -917,10 +917,10 @@ class BaseLikes(BM):
 
 
 class BaseLikesInfo(BM):
-	can_like:Optional[bool] = None
+	can_like:bool
 	can_publish:Optional[bool] = None
-	count:Optional[int] = None
-	user_likes:Optional[int] = None
+	count:int
+	user_likes:int
 
 
 class BaseLink(BM):
@@ -936,7 +936,7 @@ class BaseLink(BM):
 	product:Optional["BaseLinkProduct"] = None
 	rating:Optional["BaseLinkRating"] = None
 	title:Optional[str] = None
-	url:Optional[str] = None
+	url:str
 	target_object:Optional["LinkTargetObject"] = None
 	is_external:Optional[bool] = None
 	video:Optional["VideoVideo"] = None
@@ -965,13 +965,13 @@ class BaseLinkButton(BM):
 
 
 class BaseLinkButtonAction(BM):
-	type:Optional["BaseLinkButtonActionType"] = None
+	type:"BaseLinkButtonActionType"
 	url:Optional[str] = None
 	consume_reason:Optional[str] = None
 
 
 class BaseLinkProduct(BM):
-	price:Optional["MarketPrice"] = None
+	price:"MarketPrice"
 	merchant:Optional[str] = None
 	orders_count:Optional[int] = None
 
@@ -990,8 +990,8 @@ class BaseMessageError(BM):
 
 
 class BaseObject(BM):
-	id:Optional[int] = None
-	title:Optional[str] = None
+	id:int
+	title:str
 
 
 class BaseObjectCount(BM):
@@ -999,8 +999,8 @@ class BaseObjectCount(BM):
 
 
 class BaseObjectWithName(BM):
-	id:Optional[int] = None
-	name:Optional[str] = None
+	id:int
+	name:str
 
 
 class BasePlace(BM):
@@ -1018,7 +1018,7 @@ class BasePlace(BM):
 
 
 class BaseRepostsInfo(BM):
-	count:Optional[int] = None
+	count:int
 	wall_count:Optional[int] = None
 	mail_count:Optional[int] = None
 	user_reposted:Optional[int] = None
@@ -1064,7 +1064,7 @@ class BaseStickersList(BM):
 	pass
 
 class BaseUploadServer(BM):
-	upload_url:Optional[str] = None
+	upload_url:str
 
 
 class BaseUserId(BM):
@@ -1095,11 +1095,11 @@ class BoardTopic(BM):
 
 class BoardTopicComment(BM):
 	attachments:Optional[list[list]] = None
-	date:Optional[int] = None
-	from_id:Optional[int] = None
-	id:Optional[int] = None
+	date:int
+	from_id:int
+	id:int
 	real_offset:Optional[int] = None
-	text:Optional[str] = None
+	text:str
 	can_edit:Optional[bool] = None
 	likes:Optional["BaseLikesInfo"] = None
 
@@ -1169,25 +1169,25 @@ class CallbackType(Enum):
 	WALL_REPOST = "wall_repost"
 
 class CallbackBase(BM):
-	type:Optional[str] = None
-	group_id:Optional[int] = None
-	event_id:Optional[str] = None
+	type:str
+	group_id:int
+	event_id:str
 	secret:Optional[str] = None
 
 
 class CallbackBoardPostDelete(BM):
-	topic_owner_id:Optional[int] = None
-	topic_id:Optional[int] = None
-	id:Optional[int] = None
+	topic_owner_id:int
+	topic_id:int
+	id:int
 
 
 class CallbackDonutMoneyWithdraw(BM):
-	amount:Optional[int] = None
-	amount_without_fee:Optional[int] = None
+	amount:int
+	amount_without_fee:int
 
 
 class CallbackDonutMoneyWithdrawError(BM):
-	reason:Optional[str] = None
+	reason:str
 
 
 class CallbackDonutSubscriptionCancelled(BM):
@@ -1196,8 +1196,8 @@ class CallbackDonutSubscriptionCancelled(BM):
 
 class CallbackDonutSubscriptionCreate(BM):
 	user_id:Optional[int] = None
-	amount:Optional[int] = None
-	amount_without_fee:Optional[int] = None
+	amount:int
+	amount_without_fee:int
 
 
 class CallbackDonutSubscriptionExpired(BM):
@@ -1206,31 +1206,31 @@ class CallbackDonutSubscriptionExpired(BM):
 
 class CallbackDonutSubscriptionPriceChanged(BM):
 	user_id:Optional[int] = None
-	amount_old:Optional[int] = None
-	amount_new:Optional[int] = None
+	amount_old:int
+	amount_new:int
 	amount_diff:Optional[int] = None
 	amount_diff_without_fee:Optional[int] = None
 
 
 class CallbackDonutSubscriptionProlonged(BM):
 	user_id:Optional[int] = None
-	amount:Optional[int] = None
-	amount_without_fee:Optional[int] = None
+	amount:int
+	amount_without_fee:int
 
 
 class CallbackGroupChangePhoto(BM):
-	user_id:Optional[int] = None
-	photo:Optional["PhotosPhoto"] = None
+	user_id:int
+	photo:"PhotosPhoto"
 
 
 class CallbackGroupChangeSettings(BM):
-	user_id:Optional[int] = None
-	self:Optional[bool] = None
+	user_id:int
+	self:bool
 
 
 class CallbackGroupJoin(BM):
-	user_id:Optional[int] = None
-	join_type:Optional["CallbackGroupJoinType"] = None
+	user_id:int
+	join_type:"CallbackGroupJoinType"
 
 
 class CallbackGroupLeave(BM):
@@ -1239,10 +1239,10 @@ class CallbackGroupLeave(BM):
 
 
 class CallbackGroupOfficersEdit(BM):
-	admin_id:Optional[int] = None
-	user_id:Optional[int] = None
-	level_old:Optional["CallbackGroupOfficerRole"] = None
-	level_new:Optional["CallbackGroupOfficerRole"] = None
+	admin_id:int
+	user_id:int
+	level_old:"CallbackGroupOfficerRole"
+	level_new:"CallbackGroupOfficerRole"
 
 
 class CallbackGroupSettingsChanges(BM):
@@ -1262,37 +1262,37 @@ class CallbackGroupSettingsChanges(BM):
 
 
 class CallbackLikeAddRemove(BM):
-	liker_id:Optional[int] = None
-	object_type:Optional[str] = None
-	object_owner_id:Optional[int] = None
-	object_id:Optional[int] = None
-	post_id:Optional[int] = None
+	liker_id:int
+	object_type:str
+	object_owner_id:int
+	object_id:int
+	post_id:int
 	thread_reply_id:Optional[int] = None
 
 
 class CallbackMarketComment(BM):
-	id:Optional[int] = None
-	from_id:Optional[int] = None
-	date:Optional[int] = None
+	id:int
+	from_id:int
+	date:int
 	text:Optional[str] = None
 	market_owner_id:Optional[int] = None
 	photo_id:Optional[int] = None
 
 
 class CallbackMarketCommentDelete(BM):
-	owner_id:Optional[int] = None
-	id:Optional[int] = None
-	user_id:Optional[int] = None
-	item_id:Optional[int] = None
+	owner_id:int
+	id:int
+	user_id:int
+	item_id:int
 
 
 class CallbackMessageAllowObject(BM):
-	user_id:Optional[int] = None
-	key:Optional[str] = None
+	user_id:int
+	key:str
 
 
 class CallbackMessageDeny(BM):
-	user_id:Optional[int] = None
+	user_id:int
 
 
 class CallbackMessageObject(BM):
@@ -1301,69 +1301,69 @@ class CallbackMessageObject(BM):
 
 
 class CallbackPhotoComment(BM):
-	id:Optional[int] = None
-	from_id:Optional[int] = None
-	date:Optional[int] = None
-	text:Optional[str] = None
-	photo_owner_id:Optional[int] = None
+	id:int
+	from_id:int
+	date:int
+	text:str
+	photo_owner_id:int
 
 
 class CallbackPhotoCommentDelete(BM):
-	id:Optional[int] = None
-	owner_id:Optional[int] = None
-	user_id:Optional[int] = None
-	photo_id:Optional[int] = None
+	id:int
+	owner_id:int
+	user_id:int
+	photo_id:int
 
 
 class CallbackPollVoteNew(BM):
-	owner_id:Optional[int] = None
-	poll_id:Optional[int] = None
-	option_id:Optional[int] = None
-	user_id:Optional[int] = None
+	owner_id:int
+	poll_id:int
+	option_id:int
+	user_id:int
 
 
 class CallbackQrScan(BM):
-	user_id:Optional[int] = None
-	data:Optional[str] = None
-	type:Optional[str] = None
-	subtype:Optional[str] = None
-	reread:Optional[bool] = None
+	user_id:int
+	data:str
+	type:str
+	subtype:str
+	reread:bool
 
 
 class CallbackUserBlock(BM):
-	admin_id:Optional[int] = None
-	user_id:Optional[int] = None
-	unblock_date:Optional[int] = None
-	reason:Optional[int] = None
+	admin_id:int
+	user_id:int
+	unblock_date:int
+	reason:int
 	comment:Optional[str] = None
 
 
 class CallbackUserUnblock(BM):
-	admin_id:Optional[int] = None
-	user_id:Optional[int] = None
-	by_end_date:Optional[int] = None
+	admin_id:int
+	user_id:int
+	by_end_date:int
 
 
 class CallbackVideoComment(BM):
-	id:Optional[int] = None
-	from_id:Optional[int] = None
-	date:Optional[int] = None
-	text:Optional[str] = None
-	video_owner_id:Optional[int] = None
+	id:int
+	from_id:int
+	date:int
+	text:str
+	video_owner_id:int
 
 
 class CallbackVideoCommentDelete(BM):
-	id:Optional[int] = None
-	owner_id:Optional[int] = None
-	user_id:Optional[int] = None
-	video_id:Optional[int] = None
+	id:int
+	owner_id:int
+	user_id:int
+	video_id:int
 
 
 class CallbackWallCommentDelete(BM):
-	owner_id:Optional[int] = None
-	id:Optional[int] = None
-	user_id:Optional[int] = None
-	post_id:Optional[int] = None
+	owner_id:int
+	id:int
+	user_id:int
+	post_id:int
 
 
 
@@ -1375,10 +1375,10 @@ class CallsEndState(Enum):
 
 class CallsCall(BM):
 	duration:Optional[int] = None
-	initiator_id:Optional[int] = None
-	receiver_id:Optional[int] = None
-	state:Optional["CallsEndState"] = None
-	time:Optional[int] = None
+	initiator_id:int
+	receiver_id:int
+	state:"CallsEndState"
+	time:int
 	video:Optional[bool] = None
 	participants:Optional["CallsParticipants"] = None
 
@@ -1401,7 +1401,7 @@ class ClientInfoForBots(BM):
 
 
 class CommentThread(BM):
-	count:Optional[int] = None
+	count:int
 	items:Optional[list[list]] = None
 	can_post:Optional[bool] = None
 	show_reply_button:Optional[bool] = None
@@ -1431,8 +1431,8 @@ class DatabaseSchool(BM):
 class DatabaseStation(BM):
 	city_id:Optional[int] = None
 	color:Optional[str] = None
-	id:Optional[int] = None
-	name:Optional[str] = None
+	id:int
+	name:str
 
 
 class DatabaseUniversity(BM):
@@ -1448,14 +1448,14 @@ class DocsDocAttachmentType(Enum):
 	AUDIO_MESSAGE = "audio_message"
 
 class DocsDoc(BM):
-	id:Optional[int] = None
-	owner_id:Optional[int] = None
-	title:Optional[str] = None
-	size:Optional[int] = None
-	ext:Optional[str] = None
+	id:int
+	owner_id:int
+	title:str
+	size:int
+	ext:str
 	url:Optional[str] = None
-	date:Optional[int] = None
-	type:Optional[int] = None
+	date:int
+	type:int
 	preview:Optional["DocsDocPreview"] = None
 	is_licensed:Optional[bool] = None
 	access_key:Optional[str] = None
@@ -1470,16 +1470,16 @@ class DocsDocPreview(BM):
 
 
 class DocsDocPreviewAudioMsg(BM):
-	duration:Optional[int] = None
-	link_mp3:Optional[str] = None
-	link_ogg:Optional[str] = None
-	waveform:Optional[list[list]] = None
+	duration:int
+	link_mp3:str
+	link_ogg:str
+	waveform:list[list]
 
 
 class DocsDocPreviewGraffiti(BM):
-	src:Optional[str] = None
-	width:Optional[int] = None
-	height:Optional[int] = None
+	src:str
+	width:int
+	height:int
 
 
 class DocsDocPreviewPhoto(BM):
@@ -1487,44 +1487,44 @@ class DocsDocPreviewPhoto(BM):
 
 
 class DocsDocPreviewPhotoSizes(BM):
-	src:Optional[str] = None
-	width:Optional[int] = None
-	height:Optional[int] = None
-	type:Optional["PhotosPhotoSizesType"] = None
+	src:str
+	width:int
+	height:int
+	type:"PhotosPhotoSizesType"
 
 
 class DocsDocPreviewVideo(BM):
-	src:Optional[str] = None
-	width:Optional[int] = None
-	height:Optional[int] = None
-	file_size:Optional[int] = None
+	src:str
+	width:int
+	height:int
+	file_size:int
 
 
 class DocsDocTypes(BM):
-	id:Optional[int] = None
-	name:Optional[str] = None
-	count:Optional[int] = None
+	id:int
+	name:str
+	count:int
 
 
 
 
 class DonutDonatorSubscriptionInfo(BM):
-	owner_id:Optional[int] = None
-	next_payment_date:Optional[int] = None
-	amount:Optional[int] = None
-	status:Optional[str] = None
+	owner_id:int
+	next_payment_date:int
+	amount:int
+	status:str
 
 
 
 
 class EventsEventAttach(BM):
 	address:Optional[str] = None
-	button_text:Optional[str] = None
-	friends:Optional[list[list]] = None
-	id:Optional[int] = None
-	is_favorite:Optional[bool] = None
+	button_text:str
+	friends:list[list]
+	id:int
+	is_favorite:bool
 	member_status:Optional["GroupsGroupFullMemberStatus"] = None
-	text:Optional[str] = None
+	text:str
 	time:Optional[int] = None
 
 
@@ -1543,21 +1543,21 @@ class FavePageType(Enum):
 	HINTS = "hints"
 
 class FaveBookmark(BM):
-	added_date:Optional[int] = None
+	added_date:int
 	link:Optional["BaseLink"] = None
 	post:Optional["WallWallpostFull"] = None
 	product:Optional["MarketMarketItem"] = None
-	seen:Optional[bool] = None
-	tags:Optional[list[list]] = None
-	type:Optional["FaveBookmarkType"] = None
+	seen:bool
+	tags:list[list]
+	type:"FaveBookmarkType"
 	video:Optional["VideoVideoFull"] = None
 
 
 class FavePage(BM):
-	description:Optional[str] = None
+	description:str
 	group:Optional["GroupsGroupFull"] = None
-	tags:Optional[list[list]] = None
-	type:Optional["FavePageType"] = None
+	tags:list[list]
+	type:"FavePageType"
 	updated_date:Optional[int] = None
 	user:Optional["UsersUserFull"] = None
 
@@ -1576,14 +1576,14 @@ class FriendsFriendStatusStatus(Enum):
 	IS_FRIEND = 3
 
 class FriendsFriendStatus(BM):
-	friend_status:Optional["FriendsFriendStatusStatus"] = None
+	friend_status:"FriendsFriendStatusStatus"
 	sign:Optional[str] = None
-	user_id:Optional[int] = None
+	user_id:int
 
 
 class FriendsFriendsList(BM):
-	id:Optional[int] = None
-	name:Optional[str] = None
+	id:int
+	name:str
 
 
 class FriendsMutualFriend(BM):
@@ -1952,7 +1952,7 @@ class GroupsAddress(BM):
 	city_id:Optional[int] = None
 	country_id:Optional[int] = None
 	distance:Optional[int] = None
-	id:Optional[int] = None
+	id:int
 	latitude:Optional[int] = None
 	longitude:Optional[int] = None
 	metro_station_id:Optional[int] = None
@@ -1977,12 +1977,12 @@ class GroupsAddressTimetable(BM):
 class GroupsAddressTimetableDay(BM):
 	break_close_time:Optional[int] = None
 	break_open_time:Optional[int] = None
-	close_time:Optional[int] = None
-	open_time:Optional[int] = None
+	close_time:int
+	open_time:int
 
 
 class GroupsAddressesInfo(BM):
-	is_enabled:Optional[bool] = None
+	is_enabled:bool
 	main_address_id:Optional[int] = None
 
 
@@ -2000,12 +2000,12 @@ class GroupsBannedItem(BM):
 	pass
 
 class GroupsCallbackServer(BM):
-	id:Optional[int] = None
-	title:Optional[str] = None
-	creator_id:Optional[int] = None
-	url:Optional[str] = None
-	secret_key:Optional[str] = None
-	status:Optional[str] = None
+	id:int
+	title:str
+	creator_id:int
+	url:str
+	secret_key:str
+	status:str
 
 
 class GroupsCallbackSettings(BM):
@@ -2039,12 +2039,12 @@ class GroupsCountersGroup(BM):
 
 
 class GroupsCover(BM):
-	enabled:Optional[bool] = None
+	enabled:bool
 	images:Optional[list[list]] = None
 
 
 class GroupsGroup(BM):
-	id:Optional[int] = None
+	id:int
 	name:Optional[str] = None
 	screen_name:Optional[str] = None
 	is_closed:Optional["GroupsGroupIsClosed"] = None
@@ -2072,11 +2072,11 @@ class GroupsGroup(BM):
 
 
 class GroupsGroupAttach(BM):
-	id:Optional[int] = None
-	text:Optional[str] = None
-	status:Optional[str] = None
-	size:Optional[int] = None
-	is_favorite:Optional[bool] = None
+	id:int
+	text:str
+	status:str
+	size:int
+	is_favorite:bool
 
 
 class GroupsGroupBanInfo(BM):
@@ -2086,22 +2086,22 @@ class GroupsGroupBanInfo(BM):
 
 
 class GroupsGroupCategory(BM):
-	id:Optional[int] = None
-	name:Optional[str] = None
+	id:int
+	name:str
 	subcategories:Optional[list[list]] = None
 
 
 class GroupsGroupCategoryFull(BM):
-	id:Optional[int] = None
-	name:Optional[str] = None
-	page_count:Optional[int] = None
-	page_previews:Optional[list[list]] = None
+	id:int
+	name:str
+	page_count:int
+	page_previews:list[list]
 	subcategories:Optional[list[list]] = None
 
 
 class GroupsGroupCategoryType(BM):
-	id:Optional[int] = None
-	name:Optional[str] = None
+	id:int
+	name:str
 
 
 class GroupsGroupPublicCategoryList(BM):
@@ -2111,15 +2111,15 @@ class GroupsGroupPublicCategoryList(BM):
 
 
 class GroupsGroupTag(BM):
-	id:Optional[int] = None
-	name:Optional[str] = None
-	color:Optional[str] = None
+	id:int
+	name:str
+	color:str
 	uses:Optional[int] = None
 
 
 class GroupsGroupsArray(BM):
-	count:Optional[int] = None
-	items:Optional[list[list]] = None
+	count:int
+	items:list[list]
 
 
 class GroupsLinksItem(BM):
@@ -2134,74 +2134,74 @@ class GroupsLinksItem(BM):
 
 
 class GroupsLiveCovers(BM):
-	is_enabled:Optional[bool] = None
+	is_enabled:bool
 	is_scalable:Optional[bool] = None
 	story_ids:Optional[list[list]] = None
 
 
 class GroupsLongPollEvents(BM):
-	audio_new:Optional[bool] = None
-	board_post_delete:Optional[bool] = None
-	board_post_edit:Optional[bool] = None
-	board_post_new:Optional[bool] = None
-	board_post_restore:Optional[bool] = None
-	group_change_photo:Optional[bool] = None
-	group_change_settings:Optional[bool] = None
-	group_join:Optional[bool] = None
-	group_leave:Optional[bool] = None
-	group_officers_edit:Optional[bool] = None
+	audio_new:bool
+	board_post_delete:bool
+	board_post_edit:bool
+	board_post_new:bool
+	board_post_restore:bool
+	group_change_photo:bool
+	group_change_settings:bool
+	group_join:bool
+	group_leave:bool
+	group_officers_edit:bool
 	lead_forms_new:Optional[bool] = None
-	market_comment_delete:Optional[bool] = None
-	market_comment_edit:Optional[bool] = None
-	market_comment_new:Optional[bool] = None
-	market_comment_restore:Optional[bool] = None
+	market_comment_delete:bool
+	market_comment_edit:bool
+	market_comment_new:bool
+	market_comment_restore:bool
 	market_order_new:Optional[bool] = None
 	market_order_edit:Optional[bool] = None
-	message_allow:Optional[bool] = None
-	message_deny:Optional[bool] = None
-	message_new:Optional[bool] = None
-	message_read:Optional[bool] = None
-	message_reply:Optional[bool] = None
-	message_typing_state:Optional[bool] = None
-	message_edit:Optional[bool] = None
-	photo_comment_delete:Optional[bool] = None
-	photo_comment_edit:Optional[bool] = None
-	photo_comment_new:Optional[bool] = None
-	photo_comment_restore:Optional[bool] = None
-	photo_new:Optional[bool] = None
-	poll_vote_new:Optional[bool] = None
-	user_block:Optional[bool] = None
-	user_unblock:Optional[bool] = None
-	video_comment_delete:Optional[bool] = None
-	video_comment_edit:Optional[bool] = None
-	video_comment_new:Optional[bool] = None
-	video_comment_restore:Optional[bool] = None
-	video_new:Optional[bool] = None
-	wall_post_new:Optional[bool] = None
-	wall_reply_delete:Optional[bool] = None
-	wall_reply_edit:Optional[bool] = None
-	wall_reply_new:Optional[bool] = None
-	wall_reply_restore:Optional[bool] = None
-	wall_repost:Optional[bool] = None
-	donut_subscription_create:Optional[bool] = None
-	donut_subscription_prolonged:Optional[bool] = None
-	donut_subscription_cancelled:Optional[bool] = None
-	donut_subscription_expired:Optional[bool] = None
-	donut_subscription_price_changed:Optional[bool] = None
-	donut_money_withdraw:Optional[bool] = None
-	donut_money_withdraw_error:Optional[bool] = None
+	message_allow:bool
+	message_deny:bool
+	message_new:bool
+	message_read:bool
+	message_reply:bool
+	message_typing_state:bool
+	message_edit:bool
+	photo_comment_delete:bool
+	photo_comment_edit:bool
+	photo_comment_new:bool
+	photo_comment_restore:bool
+	photo_new:bool
+	poll_vote_new:bool
+	user_block:bool
+	user_unblock:bool
+	video_comment_delete:bool
+	video_comment_edit:bool
+	video_comment_new:bool
+	video_comment_restore:bool
+	video_new:bool
+	wall_post_new:bool
+	wall_reply_delete:bool
+	wall_reply_edit:bool
+	wall_reply_new:bool
+	wall_reply_restore:bool
+	wall_repost:bool
+	donut_subscription_create:bool
+	donut_subscription_prolonged:bool
+	donut_subscription_cancelled:bool
+	donut_subscription_expired:bool
+	donut_subscription_price_changed:bool
+	donut_money_withdraw:bool
+	donut_money_withdraw_error:bool
 
 
 class GroupsLongPollServer(BM):
-	key:Optional[str] = None
-	server:Optional[str] = None
-	ts:Optional[str] = None
+	key:str
+	server:str
+	ts:str
 
 
 class GroupsLongPollSettings(BM):
 	api_version:Optional[str] = None
-	events:Optional["GroupsLongPollEvents"] = None
-	is_enabled:Optional[bool] = None
+	events:"GroupsLongPollEvents"
+	is_enabled:bool
 
 
 class GroupsMarketInfo(BM):
@@ -2217,28 +2217,28 @@ class GroupsMarketInfo(BM):
 
 
 class GroupsMemberRole(BM):
-	id:Optional[int] = None
+	id:int
 	permissions:Optional[list[list]] = None
 	role:Optional["GroupsMemberRoleStatus"] = None
 
 
 class GroupsMemberStatus(BM):
-	member:Optional[bool] = None
-	user_id:Optional[int] = None
+	member:bool
+	user_id:int
 
 
 class GroupsMemberStatusFull(BM):
 	can_invite:Optional[bool] = None
 	can_recall:Optional[bool] = None
 	invitation:Optional[bool] = None
-	member:Optional[bool] = None
+	member:bool
 	request:Optional[bool] = None
-	user_id:Optional[int] = None
+	user_id:int
 
 
 class GroupsOnlineStatus(BM):
 	minutes:Optional[int] = None
-	status:Optional["GroupsOnlineStatusType"] = None
+	status:"GroupsOnlineStatusType"
 
 
 class GroupsOwnerXtrBanInfo(BM):
@@ -2249,43 +2249,43 @@ class GroupsOwnerXtrBanInfo(BM):
 
 
 class GroupsPhotoSize(BM):
-	height:Optional[int] = None
-	width:Optional[int] = None
+	height:int
+	width:int
 
 
 class GroupsSectionsListItem(BM):
 	pass
 
 class GroupsSettingsTwitter(BM):
-	status:Optional[str] = None
+	status:str
 	name:Optional[str] = None
 
 
 class GroupsSubjectItem(BM):
-	id:Optional[int] = None
-	name:Optional[str] = None
+	id:int
+	name:str
 
 
 class GroupsTokenPermissionSetting(BM):
-	name:Optional[str] = None
-	setting:Optional[int] = None
+	name:str
+	setting:int
 
 
 
 
 class LeadFormsAnswer(BM):
-	key:Optional[str] = None
-	answer:Optional["Any"] = None
+	key:str
+	answer:"Any"
 
 
 class LeadFormsAnswerItem(BM):
 	key:Optional[str] = None
-	value:Optional[str] = None
+	value:str
 
 
 class LeadFormsForm(BM):
-	form_id:Optional[int] = None
-	group_id:Optional[int] = None
+	form_id:int
+	group_id:int
 	photo:Optional[str] = None
 	name:Optional[str] = None
 	title:Optional[str] = None
@@ -2295,32 +2295,32 @@ class LeadFormsForm(BM):
 	policy_link_url:Optional[str] = None
 	questions:Optional[list[list]] = None
 	active:Optional[bool] = None
-	leads_count:Optional[int] = None
+	leads_count:int
 	pixel_code:Optional[str] = None
 	once_per_user:Optional[int] = None
 	notify_admins:Optional[str] = None
 	notify_emails:Optional[str] = None
-	url:Optional[str] = None
+	url:str
 
 
 class LeadFormsLead(BM):
-	lead_id:Optional[int] = None
-	user_id:Optional[int] = None
-	date:Optional[int] = None
-	answers:Optional[list[list]] = None
+	lead_id:int
+	user_id:int
+	date:int
+	answers:list[list]
 	ad_id:Optional[int] = None
 
 
 class LeadFormsQuestionItem(BM):
-	key:Optional[str] = None
-	type:Optional[str] = None
+	key:str
+	type:str
 	label:Optional[str] = None
 	options:Optional[list[list]] = None
 
 
 class LeadFormsQuestionItemOption(BM):
 	key:Optional[str] = None
-	label:Optional[str] = None
+	label:str
 
 
 
@@ -2360,57 +2360,57 @@ class MarketServicesViewType(Enum):
 	ROWS = 2
 
 class MarketCurrency(BM):
-	id:Optional[int] = None
-	name:Optional[str] = None
-	title:Optional[str] = None
+	id:int
+	name:str
+	title:str
 
 
 class MarketMarketAlbum(BM):
-	id:Optional[int] = None
-	owner_id:Optional[int] = None
-	title:Optional[str] = None
-	count:Optional[int] = None
+	id:int
+	owner_id:int
+	title:str
+	count:int
 	is_main:Optional[bool] = None
 	is_hidden:Optional[bool] = None
 	photo:Optional["PhotosPhoto"] = None
-	updated_time:Optional[int] = None
+	updated_time:int
 
 
 class MarketMarketCategory(BM):
 	pass
 
 class MarketMarketCategoryNested(BM):
-	id:Optional[int] = None
-	name:Optional[str] = None
+	id:int
+	name:str
 	parent:Optional["MarketMarketCategoryNested"] = None
 
 
 class MarketMarketCategoryOld(BM):
-	id:Optional[int] = None
-	name:Optional[str] = None
-	section:Optional["MarketSection"] = None
+	id:int
+	name:str
+	section:"MarketSection"
 
 
 class MarketMarketCategoryTree(BM):
-	id:Optional[int] = None
-	name:Optional[str] = None
+	id:int
+	name:str
 	children:Optional[list[list]] = None
 
 
 class MarketMarketItem(BM):
 	access_key:Optional[str] = None
-	availability:Optional["MarketMarketItemAvailability"] = None
+	availability:"MarketMarketItemAvailability"
 	button_title:Optional[str] = None
-	category:Optional["MarketMarketCategory"] = None
+	category:"MarketMarketCategory"
 	date:Optional[int] = None
-	description:Optional[str] = None
+	description:str
 	external_id:Optional[str] = None
-	id:Optional[int] = None
+	id:int
 	is_favorite:Optional[bool] = None
-	owner_id:Optional[int] = None
-	price:Optional["MarketPrice"] = None
+	owner_id:int
+	price:"MarketPrice"
 	thumb_photo:Optional[str] = None
-	title:Optional[str] = None
+	title:str
 	url:Optional[str] = None
 	variants_grouping_id:Optional[int] = None
 	is_main_variant:Optional[bool] = None
@@ -2418,47 +2418,47 @@ class MarketMarketItem(BM):
 
 
 class MarketOrder(BM):
-	id:Optional[int] = None
-	group_id:Optional[int] = None
-	user_id:Optional[int] = None
+	id:int
+	group_id:int
+	user_id:int
 	display_order_id:Optional[str] = None
-	date:Optional[int] = None
-	status:Optional[int] = None
-	items_count:Optional[int] = None
+	date:int
+	status:int
+	items_count:int
 	track_number:Optional[str] = None
 	track_link:Optional[str] = None
 	comment:Optional[str] = None
 	address:Optional[str] = None
 	merchant_comment:Optional[str] = None
 	weight:Optional[int] = None
-	total_price:Optional["MarketPrice"] = None
+	total_price:"MarketPrice"
 	preview_order_items:Optional[list[list]] = None
 	cancel_info:Optional["BaseLink"] = None
 
 
 class MarketOrderItem(BM):
-	owner_id:Optional[int] = None
-	item_id:Optional[int] = None
-	price:Optional["MarketPrice"] = None
-	quantity:Optional[int] = None
-	item:Optional["MarketMarketItem"] = None
+	owner_id:int
+	item_id:int
+	price:"MarketPrice"
+	quantity:int
+	item:"MarketMarketItem"
 	title:Optional[str] = None
 	photo:Optional["PhotosPhoto"] = None
 	variants:Optional[list[list]] = None
 
 
 class MarketPrice(BM):
-	amount:Optional[str] = None
-	currency:Optional["MarketCurrency"] = None
+	amount:str
+	currency:"MarketCurrency"
 	discount_rate:Optional[int] = None
 	old_amount:Optional[str] = None
-	text:Optional[str] = None
+	text:str
 	old_amount_text:Optional[str] = None
 
 
 class MarketSection(BM):
-	id:Optional[int] = None
-	name:Optional[str] = None
+	id:int
+	name:str
 
 
 
@@ -2532,17 +2532,17 @@ class MessagesTemplateActionTypeNames(Enum):
 class MessagesAudioMessage(BM):
 	access_key:Optional[str] = None
 	transcript_error:Optional[int] = None
-	duration:Optional[int] = None
-	id:Optional[int] = None
-	link_mp3:Optional[str] = None
-	link_ogg:Optional[str] = None
-	owner_id:Optional[int] = None
-	waveform:Optional[list[list]] = None
+	duration:int
+	id:int
+	link_mp3:str
+	link_ogg:str
+	owner_id:int
+	waveform:list[list]
 
 
 class MessagesChat(BM):
-	admin_id:Optional[int] = None
-	id:Optional[int] = None
+	admin_id:int
+	id:int
 	kicked:Optional[bool] = None
 	left:Optional[bool] = None
 	photo_100:Optional[str] = None
@@ -2550,16 +2550,16 @@ class MessagesChat(BM):
 	photo_50:Optional[str] = None
 	push_settings:Optional["MessagesChatPushSettings"] = None
 	title:Optional[str] = None
-	type:Optional[str] = None
-	users:Optional[list[list]] = None
+	type:str
+	users:list[list]
 	is_default_photo:Optional[bool] = None
-	members_count:Optional[int] = None
+	members_count:int
 	is_group_channel:Optional[bool] = None
 
 
 class MessagesChatFull(BM):
-	admin_id:Optional[int] = None
-	id:Optional[int] = None
+	admin_id:int
+	id:int
 	kicked:Optional[bool] = None
 	left:Optional[bool] = None
 	photo_100:Optional[str] = None
@@ -2567,8 +2567,8 @@ class MessagesChatFull(BM):
 	photo_50:Optional[str] = None
 	push_settings:Optional["MessagesChatPushSettings"] = None
 	title:Optional[str] = None
-	type:Optional[str] = None
-	users:Optional[list[list]] = None
+	type:str
+	users:list[list]
 
 
 class MessagesChatPreview(BM):
@@ -2601,15 +2601,15 @@ class MessagesChatRestrictions(BM):
 class MessagesChatSettings(BM):
 	members_count:Optional[int] = None
 	friends_count:Optional[int] = None
-	owner_id:Optional[int] = None
-	title:Optional[str] = None
+	owner_id:int
+	title:str
 	pinned_message:Optional["MessagesPinnedMessage"] = None
-	state:Optional["MessagesChatSettingsState"] = None
+	state:"MessagesChatSettingsState"
 	photo:Optional["MessagesChatSettingsPhoto"] = None
 	admin_ids:Optional[list[list]] = None
-	active_ids:Optional[list[list]] = None
+	active_ids:list[list]
 	is_group_channel:Optional[bool] = None
-	acl:Optional["MessagesChatSettingsAcl"] = None
+	acl:"MessagesChatSettingsAcl"
 	permissions:Optional["MessagesChatSettingsPermissions"] = None
 	is_disappearing:Optional[bool] = None
 	theme:Optional[str] = None
@@ -2618,16 +2618,16 @@ class MessagesChatSettings(BM):
 
 
 class MessagesChatSettingsAcl(BM):
-	can_change_info:Optional[bool] = None
-	can_change_invite_link:Optional[bool] = None
-	can_change_pin:Optional[bool] = None
-	can_invite:Optional[bool] = None
-	can_promote_users:Optional[bool] = None
-	can_see_invite_link:Optional[bool] = None
-	can_moderate:Optional[bool] = None
-	can_copy_chat:Optional[bool] = None
-	can_call:Optional[bool] = None
-	can_use_mass_mentions:Optional[bool] = None
+	can_change_info:bool
+	can_change_invite_link:bool
+	can_change_pin:bool
+	can_invite:bool
+	can_promote_users:bool
+	can_see_invite_link:bool
+	can_moderate:bool
+	can_copy_chat:bool
+	can_call:bool
+	can_use_mass_mentions:bool
 	can_change_service_type:Optional[bool] = None
 
 
@@ -2650,12 +2650,12 @@ class MessagesChatSettingsPhoto(BM):
 
 
 class MessagesConversation(BM):
-	peer:Optional["MessagesConversationPeer"] = None
+	peer:"MessagesConversationPeer"
 	sort_id:Optional["MessagesConversationSortId"] = None
-	last_message_id:Optional[int] = None
+	last_message_id:int
 	last_conversation_message_id:Optional[int] = None
-	in_read:Optional[int] = None
-	out_read:Optional[int] = None
+	in_read:int
+	out_read:int
 	unread_count:Optional[int] = None
 	is_marked_unread:Optional[bool] = None
 	out_read_by:Optional["MessagesOutReadBy"] = None
@@ -2671,7 +2671,7 @@ class MessagesConversation(BM):
 
 
 class MessagesConversationCanWrite(BM):
-	allowed:Optional[bool] = None
+	allowed:bool
 	reason:Optional[int] = None
 
 
@@ -2683,36 +2683,36 @@ class MessagesConversationMember(BM):
 	is_message_request:Optional[bool] = None
 	join_date:Optional[int] = None
 	request_date:Optional[int] = None
-	member_id:Optional[int] = None
+	member_id:int
 
 
 class MessagesConversationPeer(BM):
-	id:Optional[int] = None
+	id:int
 	local_id:Optional[int] = None
-	type:Optional["MessagesConversationPeerType"] = None
+	type:"MessagesConversationPeerType"
 
 
 class MessagesConversationSortId(BM):
-	major_id:Optional[int] = None
-	minor_id:Optional[int] = None
+	major_id:int
+	minor_id:int
 
 
 class MessagesConversationWithMessage(BM):
-	conversation:Optional["MessagesConversation"] = None
+	conversation:"MessagesConversation"
 	last_message:Optional["MessagesMessage"] = None
 
 
 class MessagesForeignMessage(BM):
 	attachments:Optional[list[list]] = None
 	conversation_message_id:Optional[int] = None
-	date:Optional[int] = None
-	from_id:Optional[int] = None
+	date:int
+	from_id:int
 	fwd_messages:Optional[list[list]] = None
 	geo:Optional["BaseGeo"] = None
 	id:Optional[int] = None
 	peer_id:Optional[int] = None
 	reply_message:Optional["MessagesForeignMessage"] = None
-	text:Optional[str] = None
+	text:str
 	update_time:Optional[int] = None
 	was_listened:Optional[bool] = None
 	payload:Optional[str] = None
@@ -2727,13 +2727,13 @@ class MessagesForward(BM):
 
 
 class MessagesGetConversationById(BM):
-	count:Optional[int] = None
-	items:Optional[list[list]] = None
+	count:int
+	items:list[list]
 
 
 class MessagesGetConversationMembers(BM):
-	items:Optional[list[list]] = None
-	count:Optional[int] = None
+	items:list[list]
+	count:int
 	chat_restrictions:Optional["MessagesChatRestrictions"] = None
 	profiles:Optional[list[list]] = None
 	groups:Optional[list[list]] = None
@@ -2741,17 +2741,17 @@ class MessagesGetConversationMembers(BM):
 
 class MessagesGraffiti(BM):
 	access_key:Optional[str] = None
-	id:Optional[int] = None
-	owner_id:Optional[int] = None
-	url:Optional[str] = None
-	width:Optional[int] = None
-	height:Optional[int] = None
+	id:int
+	owner_id:int
+	url:str
+	width:int
+	height:int
 
 
 class MessagesHistoryAttachment(BM):
-	attachment:Optional["MessagesHistoryMessageAttachment"] = None
-	message_id:Optional[int] = None
-	from_id:Optional[int] = None
+	attachment:"MessagesHistoryMessageAttachment"
+	message_id:int
+	from_id:int
 	forward_level:Optional[int] = None
 	was_listened:Optional[bool] = None
 
@@ -2764,72 +2764,72 @@ class MessagesHistoryMessageAttachment(BM):
 	link:Optional["BaseLink"] = None
 	market:Optional["MarketMarketItem"] = None
 	photo:Optional["PhotosPhoto"] = None
-	type:Optional["MessagesHistoryMessageAttachmentType"] = None
+	type:"MessagesHistoryMessageAttachmentType"
 	video:Optional["VideoVideo"] = None
 	wall:Optional["WallWallpostFull"] = None
 
 
 class MessagesKeyboard(BM):
-	one_time:Optional[bool] = None
-	buttons:Optional[list[list]] = None
+	one_time:bool
+	buttons:list[list]
 	author_id:Optional[int] = None
 	inline:Optional[bool] = None
 
 
 class MessagesKeyboardButton(BM):
-	action:Optional["MessagesKeyboardButtonPropertyAction"] = None
+	action:"MessagesKeyboardButtonPropertyAction"
 	color:Optional[str] = None
 
 
 class MessagesKeyboardButtonActionCallback(BM):
-	label:Optional[str] = None
+	label:str
 	payload:Optional[str] = None
-	type:Optional[str] = None
+	type:str
 
 
 class MessagesKeyboardButtonActionLocation(BM):
 	payload:Optional[str] = None
-	type:Optional[str] = None
+	type:str
 
 
 class MessagesKeyboardButtonActionOpenApp(BM):
-	app_id:Optional[int] = None
+	app_id:int
 	hash:Optional[str] = None
-	label:Optional[str] = None
-	owner_id:Optional[int] = None
+	label:str
+	owner_id:int
 	payload:Optional[str] = None
-	type:Optional[str] = None
+	type:str
 
 
 class MessagesKeyboardButtonActionOpenLink(BM):
-	label:Optional[str] = None
-	link:Optional[str] = None
+	label:str
+	link:str
 	payload:Optional[str] = None
-	type:Optional[str] = None
+	type:str
 
 
 class MessagesKeyboardButtonActionOpenPhoto(BM):
-	type:Optional[str] = None
+	type:str
 
 
 class MessagesKeyboardButtonActionText(BM):
-	label:Optional[str] = None
+	label:str
 	payload:Optional[str] = None
-	type:Optional[str] = None
+	type:str
 
 
 class MessagesKeyboardButtonActionVkpay(BM):
-	hash:Optional[str] = None
+	hash:str
 	payload:Optional[str] = None
-	type:Optional[str] = None
+	type:str
 
 
 class MessagesKeyboardButtonPropertyAction(BM):
 	pass
 
 class MessagesLastActivity(BM):
-	online:Optional[bool] = None
-	time:Optional[int] = None
+	online:bool
+	time:int
 
 
 class MessagesLongpollMessages(BM):
@@ -2838,9 +2838,9 @@ class MessagesLongpollMessages(BM):
 
 
 class MessagesLongpollParams(BM):
-	server:Optional[str] = None
-	key:Optional[str] = None
-	ts:Optional[int] = None
+	server:str
+	key:str
+	ts:int
 	pts:Optional[int] = None
 
 
@@ -2849,25 +2849,25 @@ class MessagesMessage(BM):
 	admin_author_id:Optional[int] = None
 	attachments:Optional[list[list]] = None
 	conversation_message_id:Optional[int] = None
-	date:Optional[int] = None
+	date:int
 	deleted:Optional[bool] = None
-	from_id:Optional[int] = None
+	from_id:int
 	fwd_messages:Optional[list[list]] = None
 	geo:Optional["BaseGeo"] = None
-	id:Optional[int] = None
+	id:int
 	important:Optional[bool] = None
 	is_hidden:Optional[bool] = None
 	is_cropped:Optional[bool] = None
 	keyboard:Optional["MessagesKeyboard"] = None
 	members_count:Optional[int] = None
-	out:Optional[bool] = None
+	out:bool
 	payload:Optional[str] = None
-	peer_id:Optional[int] = None
+	peer_id:int
 	random_id:Optional[int] = None
 	ref:Optional[str] = None
 	ref_source:Optional[str] = None
 	reply_message:Optional["MessagesForeignMessage"] = None
-	text:Optional[str] = None
+	text:str
 	update_time:Optional[int] = None
 	was_listened:Optional[bool] = None
 	pinned_at:Optional[int] = None
@@ -2881,13 +2881,13 @@ class MessagesMessageAction(BM):
 	message:Optional[str] = None
 	photo:Optional["MessagesMessageActionPhoto"] = None
 	text:Optional[str] = None
-	type:Optional["MessagesMessageActionStatus"] = None
+	type:"MessagesMessageActionStatus"
 
 
 class MessagesMessageActionPhoto(BM):
-	photo_50:Optional[str] = None
-	photo_100:Optional[str] = None
-	photo_200:Optional[str] = None
+	photo_50:str
+	photo_100:str
+	photo_200:str
 
 
 class MessagesMessageAttachment(BM):
@@ -2902,7 +2902,7 @@ class MessagesMessageAttachment(BM):
 	photo:Optional["PhotosPhoto"] = None
 	sticker:Optional["BaseSticker"] = None
 	story:Optional["StoriesStory"] = None
-	type:Optional["MessagesMessageAttachmentType"] = None
+	type:"MessagesMessageAttachmentType"
 	video:Optional["VideoVideoFull"] = None
 	wall_reply:Optional["WallWallComment"] = None
 	poll:Optional["PollsPoll"] = None
@@ -2927,28 +2927,28 @@ class MessagesOutReadBy(BM):
 class MessagesPinnedMessage(BM):
 	attachments:Optional[list[list]] = None
 	conversation_message_id:Optional[int] = None
-	id:Optional[int] = None
-	date:Optional[int] = None
-	from_id:Optional[int] = None
+	id:int
+	date:int
+	from_id:int
 	fwd_messages:Optional[list[list]] = None
 	geo:Optional["BaseGeo"] = None
-	peer_id:Optional[int] = None
+	peer_id:int
 	reply_message:Optional["MessagesForeignMessage"] = None
-	text:Optional[str] = None
+	text:str
 	keyboard:Optional["MessagesKeyboard"] = None
 
 
 class MessagesPushSettings(BM):
-	disabled_forever:Optional[bool] = None
+	disabled_forever:bool
 	disabled_until:Optional[int] = None
-	no_sound:Optional[bool] = None
+	no_sound:bool
 	disabled_mentions:Optional[bool] = None
 	disabled_mass_mentions:Optional[bool] = None
 
 
 class MessagesSendUserIdsResponseItem(BM):
-	peer_id:Optional[int] = None
-	message_id:Optional[int] = None
+	peer_id:int
+	message_id:int
 	conversation_message_id:Optional[int] = None
 	error:Optional["BaseMessageError"] = None
 
@@ -2995,19 +2995,19 @@ class NewsfeedItemAudioAudio(BM):
 
 
 class NewsfeedItemBase(BM):
-	type:Optional["NewsfeedNewsfeedItemType"] = None
-	source_id:Optional[int] = None
-	date:Optional[int] = None
+	type:"NewsfeedNewsfeedItemType"
+	source_id:int
+	date:int
 
 
 class NewsfeedItemDigestButton(BM):
-	title:Optional[str] = None
+	title:str
 	style:Optional[str] = None
 
 
 class NewsfeedItemDigestFooter(BM):
-	style:Optional[str] = None
-	text:Optional[str] = None
+	style:str
+	text:str
 	button:Optional["NewsfeedItemDigestButton"] = None
 
 
@@ -3017,13 +3017,13 @@ class NewsfeedItemDigestFullItem(BM):
 	attachment_index:Optional[int] = None
 	attachment:Optional["WallWallpostAttachment"] = None
 	style:Optional[str] = None
-	post:Optional["WallWallpost"] = None
+	post:"WallWallpost"
 
 
 class NewsfeedItemDigestHeader(BM):
-	title:Optional[str] = None
+	title:str
 	subtitle:Optional[str] = None
-	style:Optional[str] = None
+	style:str
 	button:Optional["NewsfeedItemDigestButton"] = None
 
 
@@ -3070,21 +3070,21 @@ class NewsfeedItemVideoVideo(BM):
 
 
 class NewsfeedItemWallpostFeedback(BM):
-	type:Optional["NewsfeedItemWallpostFeedbackType"] = None
-	question:Optional[str] = None
+	type:"NewsfeedItemWallpostFeedbackType"
+	question:str
 	answers:Optional[list[list]] = None
 	stars_count:Optional[int] = None
 	gratitude:Optional[str] = None
 
 
 class NewsfeedItemWallpostFeedbackAnswer(BM):
-	title:Optional[str] = None
-	id:Optional[str] = None
+	title:str
+	id:str
 
 
 class NewsfeedList(BM):
-	id:Optional[int] = None
-	title:Optional[str] = None
+	id:int
+	title:str
 
 
 class NewsfeedNewsfeedItem(BM):
@@ -3095,26 +3095,26 @@ class NewsfeedNewsfeedItem(BM):
 class NotesNote(BM):
 	read_comments:Optional[int] = None
 	can_comment:Optional[bool] = None
-	comments:Optional[int] = None
-	date:Optional[int] = None
-	id:Optional[int] = None
-	owner_id:Optional[int] = None
+	comments:int
+	date:int
+	id:int
+	owner_id:int
 	text:Optional[str] = None
 	text_wiki:Optional[str] = None
-	title:Optional[str] = None
-	view_url:Optional[str] = None
+	title:str
+	view_url:str
 	privacy_view:Optional[list[list]] = None
 	privacy_comment:Optional[list[list]] = None
 
 
 class NotesNoteComment(BM):
-	date:Optional[int] = None
-	id:Optional[int] = None
-	message:Optional[str] = None
-	nid:Optional[int] = None
-	oid:Optional[int] = None
+	date:int
+	id:int
+	message:str
+	nid:int
+	oid:int
 	reply_to:Optional[int] = None
-	uid:Optional[int] = None
+	uid:int
 
 
 
@@ -3171,8 +3171,8 @@ class NotificationsSendMessageItem(BM):
 
 
 class OauthError(BM):
-	error:Optional[str] = None
-	error_description:Optional[str] = None
+	error:str
+	error_description:str
 	redirect_uri:Optional[str] = None
 
 
@@ -3190,37 +3190,37 @@ class OrdersAmountItem(BM):
 
 
 class OrdersOrder(BM):
-	amount:Optional[str] = None
-	app_order_id:Optional[str] = None
+	amount:str
+	app_order_id:str
 	cancel_transaction_id:Optional[str] = None
-	date:Optional[str] = None
-	id:Optional[str] = None
-	item:Optional[str] = None
-	receiver_id:Optional[str] = None
-	status:Optional[str] = None
+	date:str
+	id:str
+	item:str
+	receiver_id:str
+	status:str
 	transaction_id:Optional[str] = None
-	user_id:Optional[str] = None
+	user_id:str
 
 
 class OrdersSubscription(BM):
 	cancel_reason:Optional[str] = None
-	create_time:Optional[int] = None
-	id:Optional[int] = None
-	item_id:Optional[str] = None
+	create_time:int
+	id:int
+	item_id:str
 	next_bill_time:Optional[int] = None
 	expire_time:Optional[int] = None
 	pending_cancel:Optional[bool] = None
-	period:Optional[int] = None
-	period_start_time:Optional[int] = None
-	price:Optional[int] = None
+	period:int
+	period_start_time:int
+	price:int
 	title:Optional[str] = None
 	app_id:Optional[int] = None
 	application_name:Optional[str] = None
 	photo_url:Optional[str] = None
-	status:Optional[str] = None
+	status:str
 	test_mode:Optional[bool] = None
 	trial_expire_time:Optional[int] = None
-	update_time:Optional[int] = None
+	update_time:int
 
 
 
@@ -3242,30 +3242,30 @@ class PagesWikipage(BM):
 	creator_name:Optional[str] = None
 	editor_id:Optional[int] = None
 	editor_name:Optional[str] = None
-	group_id:Optional[int] = None
-	id:Optional[int] = None
-	title:Optional[str] = None
-	views:Optional[int] = None
-	who_can_edit:Optional["PagesPrivacySettings"] = None
-	who_can_view:Optional["PagesPrivacySettings"] = None
+	group_id:int
+	id:int
+	title:str
+	views:int
+	who_can_edit:"PagesPrivacySettings"
+	who_can_view:"PagesPrivacySettings"
 
 
 class PagesWikipageFull(BM):
-	created:Optional[int] = None
+	created:int
 	creator_id:Optional[int] = None
 	current_user_can_edit:Optional[bool] = None
 	current_user_can_edit_access:Optional[bool] = None
-	edited:Optional[int] = None
+	edited:int
 	editor_id:Optional[int] = None
-	group_id:Optional[int] = None
+	group_id:int
 	html:Optional[str] = None
-	id:Optional[int] = None
+	id:int
 	source:Optional[str] = None
-	title:Optional[str] = None
-	view_url:Optional[str] = None
-	views:Optional[int] = None
-	who_can_edit:Optional["PagesPrivacySettings"] = None
-	who_can_view:Optional["PagesPrivacySettings"] = None
+	title:str
+	view_url:str
+	views:int
+	who_can_edit:"PagesPrivacySettings"
+	who_can_view:"PagesPrivacySettings"
 	url:Optional[str] = None
 	parent:Optional[str] = None
 	parent2:Optional[str] = None
@@ -3273,11 +3273,11 @@ class PagesWikipageFull(BM):
 
 
 class PagesWikipageHistory(BM):
-	id:Optional[int] = None
-	length:Optional[int] = None
-	date:Optional[int] = None
-	editor_id:Optional[int] = None
-	editor_name:Optional[str] = None
+	id:int
+	length:int
+	date:int
+	editor_id:int
+	editor_name:str
 
 
 
@@ -3331,14 +3331,14 @@ class PhotosImage(BM):
 
 class PhotosPhoto(BM):
 	access_key:Optional[str] = None
-	album_id:Optional[int] = None
-	date:Optional[int] = None
+	album_id:int
+	date:int
 	height:Optional[int] = None
-	id:Optional[int] = None
+	id:int
 	images:Optional[list[list]] = None
 	lat:Optional[int] = None
 	long:Optional[int] = None
-	owner_id:Optional[int] = None
+	owner_id:int
 	photo_256:Optional[str] = None
 	can_comment:Optional[bool] = None
 	place:Optional[str] = None
@@ -3347,7 +3347,7 @@ class PhotosPhoto(BM):
 	text:Optional[str] = None
 	user_id:Optional[int] = None
 	width:Optional[int] = None
-	has_tags:Optional[bool] = None
+	has_tags:bool
 	likes:Optional["BaseLikes"] = None
 	comments:Optional["BaseObjectCount"] = None
 	reposts:Optional["BaseRepostsInfo"] = None
@@ -3355,31 +3355,31 @@ class PhotosPhoto(BM):
 
 
 class PhotosPhotoAlbum(BM):
-	created:Optional[int] = None
+	created:int
 	description:Optional[str] = None
-	id:Optional[int] = None
-	owner_id:Optional[int] = None
-	size:Optional[int] = None
+	id:int
+	owner_id:int
+	size:int
 	thumb:Optional["PhotosPhoto"] = None
-	title:Optional[str] = None
-	updated:Optional[int] = None
+	title:str
+	updated:int
 
 
 class PhotosPhotoAlbumFull(BM):
 	can_upload:Optional[bool] = None
 	comments_disabled:Optional[bool] = None
-	created:Optional[int] = None
+	created:int
 	description:Optional[str] = None
 	can_delete:Optional[bool] = None
-	id:Optional[int] = None
-	owner_id:Optional[int] = None
-	size:Optional[int] = None
+	id:int
+	owner_id:int
+	size:int
 	sizes:Optional[list[list]] = None
 	thumb_id:Optional[int] = None
 	thumb_is_last:Optional[bool] = None
 	thumb_src:Optional[str] = None
-	title:Optional[str] = None
-	updated:Optional[int] = None
+	title:str
+	updated:int
 	upload_by_admins_only:Optional[bool] = None
 
 
@@ -3388,17 +3388,17 @@ class PhotosPhotoFalseable(BM):
 
 class PhotosPhotoFullXtrRealOffset(BM):
 	access_key:Optional[str] = None
-	album_id:Optional[int] = None
+	album_id:int
 	can_comment:Optional[bool] = None
 	comments:Optional["BaseObjectCount"] = None
-	date:Optional[int] = None
+	date:int
 	height:Optional[int] = None
 	hidden:Optional["BasePropertyExists"] = None
-	id:Optional[int] = None
+	id:int
 	lat:Optional[int] = None
 	likes:Optional["BaseLikes"] = None
 	long:Optional[int] = None
-	owner_id:Optional[int] = None
+	owner_id:int
 	photo_1280:Optional[str] = None
 	photo_130:Optional[str] = None
 	photo_2560:Optional[str] = None
@@ -3416,45 +3416,45 @@ class PhotosPhotoFullXtrRealOffset(BM):
 
 
 class PhotosPhotoSizes(BM):
-	height:Optional[int] = None
-	url:Optional[str] = None
+	height:int
+	url:str
 	src:Optional[str] = None
-	type:Optional["PhotosPhotoSizesType"] = None
-	width:Optional[int] = None
+	type:"PhotosPhotoSizesType"
+	width:int
 
 
 class PhotosPhotoTag(BM):
-	date:Optional[int] = None
-	id:Optional[int] = None
-	placer_id:Optional[int] = None
-	tagged_name:Optional[str] = None
+	date:int
+	id:int
+	placer_id:int
+	tagged_name:str
 	description:Optional[str] = None
-	user_id:Optional[int] = None
-	viewed:Optional[bool] = None
-	x:Optional[int] = None
-	x2:Optional[int] = None
-	y:Optional[int] = None
-	y2:Optional[int] = None
+	user_id:int
+	viewed:bool
+	x:int
+	x2:int
+	y:int
+	y2:int
 
 
 class PhotosPhotoUpload(BM):
-	album_id:Optional[int] = None
-	upload_url:Optional[str] = None
+	album_id:int
+	upload_url:str
 	fallback_upload_url:Optional[str] = None
-	user_id:Optional[int] = None
+	user_id:int
 	group_id:Optional[int] = None
 
 
 class PhotosPhotoXtrRealOffset(BM):
 	access_key:Optional[str] = None
-	album_id:Optional[int] = None
-	date:Optional[int] = None
+	album_id:int
+	date:int
 	height:Optional[int] = None
 	hidden:Optional["BasePropertyExists"] = None
-	id:Optional[int] = None
+	id:int
 	lat:Optional[int] = None
 	long:Optional[int] = None
-	owner_id:Optional[int] = None
+	owner_id:int
 	photo_1280:Optional[str] = None
 	photo_130:Optional[str] = None
 	photo_2560:Optional[str] = None
@@ -3471,13 +3471,13 @@ class PhotosPhotoXtrRealOffset(BM):
 
 class PhotosPhotoXtrTagInfo(BM):
 	access_key:Optional[str] = None
-	album_id:Optional[int] = None
-	date:Optional[int] = None
+	album_id:int
+	date:int
 	height:Optional[int] = None
-	id:Optional[int] = None
+	id:int
 	lat:Optional[int] = None
 	long:Optional[int] = None
-	owner_id:Optional[int] = None
+	owner_id:int
 	photo_1280:Optional[str] = None
 	photo_130:Optional[str] = None
 	photo_2560:Optional[str] = None
@@ -3527,10 +3527,10 @@ class PodcastExternalData(BM):
 
 
 class PollsAnswer(BM):
-	id:Optional[int] = None
-	rate:Optional[int] = None
-	text:Optional[str] = None
-	votes:Optional[int] = None
+	id:int
+	rate:int
+	text:str
+	votes:int
 
 
 class PollsBackground(BM):
@@ -3546,33 +3546,33 @@ class PollsBackground(BM):
 
 
 class PollsFriend(BM):
-	id:Optional[int] = None
+	id:int
 
 
 class PollsPoll(BM):
 	anonymous:Optional["PollsPollAnonymous"] = None
 	friends:Optional[list[list]] = None
-	multiple:Optional[bool] = None
+	multiple:bool
 	answer_id:Optional[int] = None
-	end_date:Optional[int] = None
+	end_date:int
 	answer_ids:Optional[list[list]] = None
-	closed:Optional[bool] = None
-	is_board:Optional[bool] = None
-	can_edit:Optional[bool] = None
-	can_vote:Optional[bool] = None
-	can_report:Optional[bool] = None
-	can_share:Optional[bool] = None
+	closed:bool
+	is_board:bool
+	can_edit:bool
+	can_vote:bool
+	can_report:bool
+	can_share:bool
 	embed_hash:Optional[str] = None
 	photo:Optional["PollsBackground"] = None
-	answers:Optional[list[list]] = None
-	created:Optional[int] = None
-	id:Optional[int] = None
-	owner_id:Optional[int] = None
+	answers:list[list]
+	created:int
+	id:int
+	owner_id:int
 	author_id:Optional[int] = None
-	question:Optional[str] = None
+	question:str
 	background:Optional["PollsBackground"] = None
-	votes:Optional[int] = None
-	disable_unvote:Optional[bool] = None
+	votes:int
+	disable_unvote:bool
 
 
 class PollsPollAnonymous(BM):
@@ -3593,13 +3593,13 @@ class PollsVotersUsers(BM):
 class PrettyCardsPrettyCard(BM):
 	button:Optional["Any"] = None
 	button_text:Optional[str] = None
-	card_id:Optional[str] = None
+	card_id:str
 	images:Optional[list[list]] = None
-	link_url:Optional[str] = None
-	photo:Optional[str] = None
+	link_url:str
+	photo:str
 	price:Optional[str] = None
 	price_old:Optional[str] = None
-	title:Optional[str] = None
+	title:str
 
 
 class PrettyCardsPrettyCardOrError(BM):
@@ -3627,12 +3627,12 @@ class SearchHintType(Enum):
 
 class SearchHint(BM):
 	app:Optional["AppsApp"] = None
-	description:Optional[str] = None
+	description:str
 	_global:Optional[bool] = None
 	group:Optional["GroupsGroup"] = None
 	profile:Optional["UsersUserMin"] = None
 	section:Optional["SearchHintSection"] = None
-	type:Optional["SearchHintType"] = None
+	type:"SearchHintType"
 	link:Optional["BaseLink"] = None
 
 
@@ -3649,8 +3649,8 @@ class SecureLevel(BM):
 
 
 class SecureSetCounterItem(BM):
-	id:Optional[int] = None
-	result:Optional[bool] = None
+	id:int
+	result:bool
 
 
 class SecureSmsNotification(BM):
@@ -3721,7 +3721,7 @@ class StatsReach(BM):
 
 class StatsSexAge(BM):
 	count:Optional[int] = None
-	value:Optional[str] = None
+	value:str
 	reach:Optional[int] = None
 	reach_subscribers:Optional[int] = None
 	count_subscribers:Optional[int] = None
@@ -3758,29 +3758,29 @@ class StatsWallpostStat(BM):
 
 
 class StatusStatus(BM):
-	text:Optional[str] = None
+	text:str
 	audio:Optional["AudioAudio"] = None
 
 
 
 
 class StickersImageSet(BM):
-	base_url:Optional[str] = None
+	base_url:str
 	version:Optional[int] = None
 
 
 
 
 class StorageValue(BM):
-	key:Optional[str] = None
-	value:Optional[str] = None
+	key:str
+	value:str
 
 
 
 
 class StoreProduct(BM):
-	id:Optional[int] = None
-	type:Optional[str] = None
+	id:int
+	type:str
 	is_new:Optional[bool] = None
 	purchased:Optional[bool] = None
 	active:Optional[bool] = None
@@ -3800,15 +3800,15 @@ class StoreProductIcon(BM):
 	pass
 
 class StoreStickersKeyword(BM):
-	words:Optional[list[list]] = None
+	words:list[list]
 	user_stickers:Optional["StoreStickersKeywordStickers"] = None
 	promoted_stickers:Optional["StoreStickersKeywordStickers"] = None
 	stickers:Optional[list[list]] = None
 
 
 class StoreStickersKeywordSticker(BM):
-	pack_id:Optional[int] = None
-	sticker_id:Optional[int] = None
+	pack_id:int
+	sticker_id:int
 
 
 class StoreStickersKeywordStickers(BM):
@@ -3852,13 +3852,13 @@ class StoriesUploadLinkText(Enum):
 	CALENDAR = "calendar"
 
 class StoriesClickableArea(BM):
-	x:Optional[int] = None
-	y:Optional[int] = None
+	x:int
+	y:int
 
 
 class StoriesClickableSticker(BM):
-	clickable_area:Optional[list[list]] = None
-	id:Optional[int] = None
+	clickable_area:list[list]
+	id:int
 	hashtag:Optional[str] = None
 	link_object:Optional["BaseLink"] = None
 	mention:Optional[str] = None
@@ -3872,7 +3872,7 @@ class StoriesClickableSticker(BM):
 	audio:Optional["AudioAudio"] = None
 	audio_start_time:Optional[int] = None
 	style:Optional[str] = None
-	type:Optional[str] = None
+	type:str
 	subtype:Optional[str] = None
 	post_owner_id:Optional[int] = None
 	post_id:Optional[int] = None
@@ -3889,13 +3889,13 @@ class StoriesClickableSticker(BM):
 
 
 class StoriesClickableStickers(BM):
-	clickable_stickers:Optional[list[list]] = None
-	original_height:Optional[int] = None
-	original_width:Optional[int] = None
+	clickable_stickers:list[list]
+	original_height:int
+	original_width:int
 
 
 class StoriesFeedItem(BM):
-	type:Optional[str] = None
+	type:str
 	id:Optional[str] = None
 	stories:Optional[list[list]] = None
 	grouped:Optional[list[list]] = None
@@ -3908,19 +3908,19 @@ class StoriesFeedItem(BM):
 
 
 class StoriesPromoBlock(BM):
-	name:Optional[str] = None
-	photo_50:Optional[str] = None
-	photo_100:Optional[str] = None
-	not_animated:Optional[bool] = None
+	name:str
+	photo_50:str
+	photo_100:str
+	not_animated:bool
 
 
 class StoriesReplies(BM):
-	count:Optional[int] = None
+	count:int
 	new:Optional[int] = None
 
 
 class StoriesStatLine(BM):
-	name:Optional[str] = None
+	name:str
 	counter:Optional[int] = None
 	is_unavailable:Optional[bool] = None
 
@@ -3935,11 +3935,11 @@ class StoriesStory(BM):
 	can_hide:Optional[bool] = None
 	date:Optional[int] = None
 	expires_at:Optional[int] = None
-	id:Optional[int] = None
+	id:int
 	is_deleted:Optional[bool] = None
 	is_expired:Optional[bool] = None
 	link:Optional["StoriesStoryLink"] = None
-	owner_id:Optional[int] = None
+	owner_id:int
 	parent_story:Optional["StoriesStory"] = None
 	parent_story_access_key:Optional[str] = None
 	parent_story_id:Optional[int] = None
@@ -3960,30 +3960,30 @@ class StoriesStory(BM):
 
 
 class StoriesStoryLink(BM):
-	text:Optional[str] = None
-	url:Optional[str] = None
+	text:str
+	url:str
 	link_url_target:Optional[str] = None
 
 
 class StoriesStoryStats(BM):
-	answer:Optional["StoriesStoryStatsStat"] = None
-	bans:Optional["StoriesStoryStatsStat"] = None
-	open_link:Optional["StoriesStoryStatsStat"] = None
-	replies:Optional["StoriesStoryStatsStat"] = None
-	shares:Optional["StoriesStoryStatsStat"] = None
-	subscribers:Optional["StoriesStoryStatsStat"] = None
-	views:Optional["StoriesStoryStatsStat"] = None
-	likes:Optional["StoriesStoryStatsStat"] = None
+	answer:"StoriesStoryStatsStat"
+	bans:"StoriesStoryStatsStat"
+	open_link:"StoriesStoryStatsStat"
+	replies:"StoriesStoryStatsStat"
+	shares:"StoriesStoryStatsStat"
+	subscribers:"StoriesStoryStatsStat"
+	views:"StoriesStoryStatsStat"
+	likes:"StoriesStoryStatsStat"
 
 
 class StoriesStoryStatsStat(BM):
 	count:Optional[int] = None
-	state:Optional["StoriesStoryStatsState"] = None
+	state:"StoriesStoryStatsState"
 
 
 class StoriesViewersItem(BM):
-	is_liked:Optional[bool] = None
-	user_id:Optional[int] = None
+	is_liked:bool
+	user_id:int
 	user:Optional["UsersUserFull"] = None
 
 
@@ -4138,11 +4138,11 @@ class UsersLastSeen(BM):
 
 
 class UsersMilitary(BM):
-	country_id:Optional[int] = None
+	country_id:int
 	_from:Optional[int] = None
 	id:Optional[int] = None
-	unit:Optional[str] = None
-	unit_id:Optional[int] = None
+	unit:str
+	unit_id:int
 	until:Optional[int] = None
 
 
@@ -4153,7 +4153,7 @@ class UsersOccupation(BM):
 
 
 class UsersOnlineInfo(BM):
-	visible:Optional[bool] = None
+	visible:bool
 	last_seen:Optional[int] = None
 	is_online:Optional[bool] = None
 	app_id:Optional[int] = None
@@ -4177,7 +4177,7 @@ class UsersRelative(BM):
 	birth_date:Optional[str] = None
 	id:Optional[int] = None
 	name:Optional[str] = None
-	type:Optional[str] = None
+	type:str
 
 
 class UsersSchool(BM):
@@ -4213,12 +4213,12 @@ class UsersUniversity(BM):
 
 
 class UsersUserConnections(BM):
-	skype:Optional[str] = None
-	facebook:Optional[str] = None
+	skype:str
+	facebook:str
 	facebook_name:Optional[str] = None
-	twitter:Optional[str] = None
+	twitter:str
 	livejournal:Optional[str] = None
-	instagram:Optional[str] = None
+	instagram:str
 
 
 class UsersUserCounters(BM):
@@ -4252,7 +4252,7 @@ class UsersUserMin(BM):
 	deactivated:Optional[str] = None
 	first_name:Optional[str] = None
 	hidden:Optional[int] = None
-	id:Optional[int] = None
+	id:int
 	last_name:Optional[str] = None
 	can_access_closed:Optional[bool] = None
 	is_closed:Optional[bool] = None
@@ -4265,7 +4265,7 @@ class UsersUserSettingsXtr(BM):
 	city:Optional["BaseCity"] = None
 	country:Optional["BaseCountry"] = None
 	first_name:Optional[str] = None
-	home_town:Optional[str] = None
+	home_town:str
 	last_name:Optional[str] = None
 	maiden_name:Optional[str] = None
 	name_request:Optional["AccountNameRequest"] = None
@@ -4277,15 +4277,15 @@ class UsersUserSettingsXtr(BM):
 	relation_requests:Optional[list[list]] = None
 	screen_name:Optional[str] = None
 	sex:Optional["BaseSex"] = None
-	status:Optional[str] = None
+	status:str
 	status_audio:Optional["AudioAudio"] = None
 	interests:Optional["AccountUserSettingsInterests"] = None
 	languages:Optional[list[list]] = None
 
 
 class UsersUsersArray(BM):
-	count:Optional[int] = None
-	items:Optional[list[list]] = None
+	count:int
+	items:list[list]
 
 
 
@@ -4372,7 +4372,7 @@ class UtilsStatsSexAge(BM):
 
 
 class VideoLiveInfo(BM):
-	enabled:Optional[bool] = None
+	enabled:bool
 	is_notifications_blocked:Optional[bool] = None
 
 
@@ -4441,9 +4441,9 @@ class VideoVideo(BM):
 
 
 class VideoVideoAlbum(BM):
-	id:Optional[int] = None
-	owner_id:Optional[int] = None
-	title:Optional[str] = None
+	id:int
+	owner_id:int
+	title:str
 
 
 class VideoVideoFiles(BM):
@@ -4536,18 +4536,18 @@ class WallAppPost(BM):
 
 
 class WallAttachedNote(BM):
-	comments:Optional[int] = None
-	date:Optional[int] = None
-	id:Optional[int] = None
-	owner_id:Optional[int] = None
-	read_comments:Optional[int] = None
-	title:Optional[str] = None
+	comments:int
+	date:int
+	id:int
+	owner_id:int
+	read_comments:int
+	title:str
 	text:Optional[str] = None
 	privacy_view:Optional[list[list]] = None
 	privacy_comment:Optional[list[list]] = None
 	can_comment:Optional[int] = None
 	text_wiki:Optional[str] = None
-	view_url:Optional[str] = None
+	view_url:str
 
 
 class WallCarouselBase(BM):
@@ -4564,7 +4564,7 @@ class WallCommentAttachment(BM):
 	page:Optional["PagesWikipageFull"] = None
 	photo:Optional["PhotosPhoto"] = None
 	sticker:Optional["BaseSticker"] = None
-	type:Optional["WallCommentAttachmentType"] = None
+	type:"WallCommentAttachmentType"
 	video:Optional["VideoVideo"] = None
 
 
@@ -4588,9 +4588,9 @@ class WallGraffiti(BM):
 
 class WallPostCopyright(BM):
 	id:Optional[int] = None
-	link:Optional[str] = None
-	name:Optional[str] = None
-	type:Optional[str] = None
+	link:str
+	name:str
+	type:str
 
 
 class WallPostSource(BM):
@@ -4613,16 +4613,16 @@ class WallViews(BM):
 
 
 class WallWallComment(BM):
-	id:Optional[int] = None
-	from_id:Optional[int] = None
+	id:int
+	from_id:int
 	can_edit:Optional[bool] = None
 	post_id:Optional[int] = None
 	owner_id:Optional[int] = None
 	parents_stack:Optional[list[list]] = None
 	photo_id:Optional[int] = None
 	video_id:Optional[int] = None
-	date:Optional[int] = None
-	text:Optional[str] = None
+	date:int
+	text:str
 	attachments:Optional[list[list]] = None
 	donut:Optional["WallWallCommentDonut"] = None
 	likes:Optional["BaseLikesInfo"] = None
@@ -4640,7 +4640,7 @@ class WallWallCommentDonut(BM):
 
 
 class WallWallCommentDonutPlaceholder(BM):
-	text:Optional[str] = None
+	text:str
 
 
 class WallWallpost(BM):
@@ -4684,7 +4684,7 @@ class WallWallpostAttachment(BM):
 	photo:Optional["PhotosPhoto"] = None
 	poll:Optional["PollsPoll"] = None
 	posted_photo:Optional["WallPostedPhoto"] = None
-	type:Optional["WallWallpostAttachmentType"] = None
+	type:"WallWallpostAttachmentType"
 	video:Optional["VideoVideoFull"] = None
 
 
@@ -4693,11 +4693,11 @@ class WallWallpostCommentsDonut(BM):
 
 
 class WallWallpostCommentsDonutPlaceholder(BM):
-	text:Optional[str] = None
+	text:str
 
 
 class WallWallpostDonut(BM):
-	is_donut:Optional[bool] = None
+	is_donut:bool
 	paid_duration:Optional[int] = None
 	placeholder:Optional["WallWallpostDonutPlaceholder"] = None
 	can_publish_free_copy:Optional[bool] = None
@@ -4705,7 +4705,7 @@ class WallWallpostDonut(BM):
 
 
 class WallWallpostDonutPlaceholder(BM):
-	text:Optional[str] = None
+	text:str
 
 
 class WallWallpostToId(BM):
@@ -4761,16 +4761,16 @@ class WidgetsWidgetComment(BM):
 	attachments:Optional[list[list]] = None
 	can_delete:Optional[bool] = None
 	comments:Optional["WidgetsCommentReplies"] = None
-	date:Optional[int] = None
-	from_id:Optional[int] = None
-	id:Optional[int] = None
+	date:int
+	from_id:int
+	id:int
 	likes:Optional["BaseLikesInfo"] = None
 	media:Optional["WidgetsCommentMedia"] = None
 	post_source:Optional["WallPostSource"] = None
-	post_type:Optional[int] = None
+	post_type:int
 	reposts:Optional["BaseRepostsInfo"] = None
-	text:Optional[str] = None
-	to_id:Optional[int] = None
+	text:str
+	to_id:int
 	user:Optional["UsersUserFull"] = None
 
 
@@ -4827,19 +4827,19 @@ class CallbackConfirmation(CallbackBase):
 
 class CallbackMessageAllow(CallbackBase):
 	type:Optional[str] = None
-	object:Optional["CallbackMessageAllowObject"] = None
+	object:"CallbackMessageAllowObject"
 
 class CallbackMessageEdit(CallbackBase):
 	type:Optional[str] = None
-	object:Optional["MessagesMessage"] = None
+	object:"MessagesMessage"
 
 class CallbackMessageNew(CallbackBase):
 	type:Optional[str] = None
-	object:Optional[object] = None
+	object:object
 
 class CallbackMessageReply(CallbackBase):
 	type:Optional[str] = None
-	object:Optional["MessagesMessage"] = None
+	object:"MessagesMessage"
 
 class DatabaseCity(BaseObject):
 	area:Optional[str] = None
@@ -4959,8 +4959,8 @@ class NewsfeedItemPromoButton(NewsfeedItemBase):
 class NewsfeedItemTopic(NewsfeedItemBase):
 	comments:Optional["BaseCommentsInfo"] = None
 	likes:Optional["BaseLikesInfo"] = None
-	post_id:Optional[int] = None
-	text:Optional[str] = None
+	post_id:int
+	text:str
 
 class NewsfeedItemVideo(WallCarouselBase, NewsfeedItemBase):
 	video:Optional["NewsfeedItemVideoVideo"] = None
@@ -5118,11 +5118,11 @@ class UsersUserXtrType(UsersUser):
 	type:Optional["UsersUserType"] = None
 
 class VideoVideoAlbumFull(VideoVideoAlbum):
-	count:Optional[int] = None
+	count:int
 	image:Optional[list[list]] = None
 	image_blur:Optional["BasePropertyExists"] = None
 	is_system:Optional["BasePropertyExists"] = None
-	updated_time:Optional[int] = None
+	updated_time:int
 
 class VideoVideoFull(VideoVideo):
 	files:Optional["VideoVideoFiles"] = None
@@ -5149,8 +5149,6 @@ class WallWallpostFull(WallCarouselBase, WallWallpost):
 
 class FriendsUserXtrPhone(UsersUserFull):
 	phone:Optional[str] = None
-
-
 
 class GroupsUserXtrRole(UsersUserFull):
 	role:Optional["GroupsRoleOptions"] = None

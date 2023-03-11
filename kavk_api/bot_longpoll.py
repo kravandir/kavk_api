@@ -47,12 +47,12 @@ class BotLongPoll:
     async def __anext__(self) -> BotEvent:
         if self.params == {}: 
             group_id = await self._api.groups.getById()
-            group_id = group_id[0]['id']
-            r = await self._api.groups.getLongPollServer(lp_version=self._v, group_id=group_id)
-            self.params:dict = {'key': r['key'], 'ts': r['ts'],
+            group_id = group_id[0].id
+            r = await self._api.groups.getLongPollServer(group_id=group_id)
+            self.params:dict = {'key': r.key, 'ts': r.ts,
                            'wait': self._wait, 'mode': self._mode,
                            'version': self._v, 'act': 'a_check'}
-            self.server:str = r['server']
+            self.server:str = r.server
 
         if self.updates != []:
             u = self.updates.pop(0)
