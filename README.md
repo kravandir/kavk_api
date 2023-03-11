@@ -16,7 +16,7 @@ async def main():
   vk = Vk('token')
   api = vk.get_api()
   longpoll = LongPoll(vk)
-  await api.wall.post(message="Привет avk_api!")
+  await api.wall.post(message="Привет kavk_api!")
   async for event in longpoll.listen():
       print(event)
       
